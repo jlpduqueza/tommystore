@@ -1,0 +1,40 @@
+User:
+	email
+	password
+	first name
+	last name
+	contact number
+	shipping address - object
+		address1
+		address2
+		zip code
+		country
+	credit card - object
+		10 digit number
+		5 security code
+	role
+	createdAt
+Product
+	id
+	name
+	price
+	list<Category>
+InventoryItem
+	id
+	product
+	quantity
+Category
+	id
+	code
+	name
+OrderItem
+	id
+	product
+	quantity
+	subtotalprice
+Order
+	id
+	list<OrderItem>
+	OrderedAt
+	totalPrice
+	

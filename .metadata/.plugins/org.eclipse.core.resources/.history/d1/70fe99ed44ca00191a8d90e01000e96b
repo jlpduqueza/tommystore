@@ -1,0 +1,34 @@
+package com.tommystore.domain;
+
+
+public class StockHistory {
+	
+	private Integer id;
+	private InventoryItem inventoryItem;
+	private User user;
+	
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public InventoryItem getInventoryItem() {
+		return inventoryItem;
+	}
+	
+	public void setInventoryItem(InventoryItem inventoryItem) {
+		this.inventoryItem = inventoryItem;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+}

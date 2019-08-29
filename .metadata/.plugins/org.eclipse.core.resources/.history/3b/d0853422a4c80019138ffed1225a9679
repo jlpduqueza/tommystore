@@ -1,0 +1,87 @@
+package com.tommystore.repository;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import org.springframework.stereotype.Repository;
+
+import com.tommystore.domain.Category;
+import com.tommystore.exceptions.CategoryCreationException;
+
+@Repository
+public class CategoryRepositoryImpl implements CategoryRepository {
+
+	@PersistenceContext
+	private EntityManager em;
+	
+	@Override
+	public Category findCategoryById(Integer id) {
+		System.out.println(em.find(Category.class, id));
+		return em.find(Category.class, id);
+	}
+
+	@Override
+	public Category saveCategory(Category category) throws CategoryCreationException {
+        if (category.getCategoryId() == null) {
+
+    		try {
+                em.persist(category);
+                category = em.merge(category);
+                category.setCategoryId("CAT-"+category.getId());
+                
+    		} catch (Exception e) {
+
+                throw new CategoryCreationException();
+    		}
+    		
+        } else {
+            category = em.merge(category);
+        }
+        return category;
+	}
+
+	@Override
+	public List<Category> getCategoryList() {
+		TypedQuery<Category> query =  em.createQuery("From Category", Category.class);
+		return query.getResultList();
+	}
+
+	@Override
+	public Map<Integer, String> getCategoryMap() {
+		TypedQuery<Category> query =  em.createQuery("From Category", Category.class);
+		List<Category> categoryList =  query.getResultList();
+		Map<Integer, String> categoryMap = new HashMap<>();
+		
+		for(Category category : categoryList) {
+			categoryMap.put(category.getId(), category.getName());
+		}
+		
+		return categoryMap;
+	}
+
+	@Override
+	public Category findCategoryByName(String name) {
+		TypedQuery<Category> query =  em.createQuery("From Category where name = :name", Category.class);
+		query.setParameter("name", name);
+		return query.getSingleResult();
+	}
+
+	@Override
+	public String generateCategoryId() {
+		Random rand = new Random();
+		String categoryId;
+		
+		TypedQuery<Category> query =  em.createQuery("From Category order by categoryId DESC LIMIT 1", Category.class);
+		Category category = query.getSingleResult();
+		
+		categoryId = category.getCategoryId();
+		return null;
+	}
+
+}

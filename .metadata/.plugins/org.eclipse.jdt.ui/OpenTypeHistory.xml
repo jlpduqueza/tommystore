@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.repository{CategoryRepository.java[CategoryRepository" modifiers="513" timestamp="1567056696697"/>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.service{CategoryService.java[CategoryService" modifiers="513" timestamp="1567056658792"/>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.service{ProductService.java[ProductService" modifiers="513" timestamp="1566976962486"/>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.repository{ProductRepository.java[ProductRepository" modifiers="513" timestamp="1566977033870"/>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.service{InventoryItemService.java[InventoryItemService" modifiers="513" timestamp="1566879023830"/>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.repository{InventoryRepository.java[InventoryRepository" modifiers="513" timestamp="1566979193281"/>
+</typeInfoHistroy>

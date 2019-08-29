@@ -1,0 +1,31 @@
+1565682102553	Rename type 'controller'
+1565683121660	Encapsulate field 'user'
+1565683138400	Encapsulate field 'user'
+1565687071975	Rename type 'UserRepository'
+1565687467492	Encapsulate field 'password'
+1565688918283	Rename field 'userRepository'
+1565692043357	Rename type 'loginBean'
+1565762120660	Delete element
+1565769094976	Delete element
+1565769742861	Encapsulate field 'confirmPassword'
+1565776712011	Rename resource 'navbar.jsp'
+1565844788263	Move file
+1565844796777	Move folder
+1565844953736	Move folder
+1565844966028	Move folder
+1565845013593	Move folder
+1565845044663	Move folder
+1565845501874	Move folder
+1565845570397	Rename resource 'Dashboard Template for Bootstrap_files'
+1565846322372	Rename resource 'admin-dashboard.jsp'
+1565846332519	Rename resource 'navbar.jsp'
+1565853764782	Delete element
+1565853777579	Rename resource 'login1.jsp'
+1565853794906	Delete element
+1565854199327	Rename field 'createdAt'
+1565857919386	Delete element
+1565932710540	Rename local variable 'oneDay'
+1565936503808	Rename field 'code'
+1565941891437	Rename field 'id'
+1565942622179	Rename resource 'admin-dashboard-product-view.jsp'
+1565946213490	Encapsulate field 'role'

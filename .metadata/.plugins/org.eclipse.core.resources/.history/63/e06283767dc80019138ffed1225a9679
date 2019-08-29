@@ -1,0 +1,27 @@
+package com.tommystore.repository;
+
+import java.util.List;
+
+import com.tommystore.domain.InventoryItem;
+
+public class InventoryRepositoryImpl implements InventoryRepository {
+
+	@Override
+	public InventoryItem findInventoryItemById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InventoryItem saveInventoryItem(InventoryItem inventoryItem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<InventoryItem> getInventoryItemList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,16 @@
+1566893746912	Rename type 'CategoryRespotoryImpl'
+1566897134496	Copy file
+1566897216630	Rename resource 'admin-dashboard-inventorylist.jsp'
+1566898407520	Rename local variable 'category'
+1566903162642	Copy file
+1566903306125	Rename resource 'admin-dashboard-edit-inventoryitem.jsp'
+1566966811105	Rename local variable 'inventory'
+1566972877981	Copy file
+1567055897642	Delete element
+1567063821887	Encapsulate field 'role'
+1567064786866	Encapsulate field 'role'
+1567067300392	Copy file
+1567071367326	Encapsulate field 'role'
+1567073391562	Encapsulate field 'inventoryItemList'
+1567075208256	Copy file
+1567075856776	Encapsulate field 'updatedQuantity'

@@ -1,0 +1,17 @@
+package com.tommystore.bean;
+
+import com.tommystore.constant.Role;
+
+public class RoleFilterBean {
+
+	private Role role;
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	
+}

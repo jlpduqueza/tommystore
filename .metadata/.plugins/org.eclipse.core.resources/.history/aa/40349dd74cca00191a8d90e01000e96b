@@ -1,0 +1,46 @@
+package com.tommystore.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.tommystore.domain.InventoryItem;
+import com.tommystore.service.InventoryItemService;
+import com.tommystore.service.UserService;
+
+@Controller
+@RequestMapping(value = "/admin")
+public class InventoryController {
+
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private InventoryItemService inventoryItemService;
+	
+	@Value("${inventory.nstock}")
+	private int nStock;
+	
+    @RequestMapping(value = "/inventoryitem-list-view", method = RequestMethod.GET)
+    public String inventoryItemView(Model model) {
+    	model.addAttribute("inventoryItemList", inventoryItemService.getInventoryItemList());
+		return "admin-dashboard-inventoryitemlist";
+    }
+    
+    @RequestMapping(value = "/stock-history-view", method = RequestMethod.GET)
+    public String stockHistoryView(Model model) {
+    	model.addAttribute("stockHistoryList", inventoryItemService.getStockHistoryList());
+		return "admin-dashboard-stockhistorylist";
+    }
+    
+    @RequestMapping(value = "/add-stock-view", method = RequestMethod.GET)
+    public String editInventoryItemView(Model model, @RequestParam("id") Integer id) {
+    	InventoryItem inventoryItem = inventoryItemService.findInventoryItemById(id);
+    	model.addAttribute("inventoryItem", inventoryItem);
+		return "admin-dashboard-add-stock";
+    }
+}

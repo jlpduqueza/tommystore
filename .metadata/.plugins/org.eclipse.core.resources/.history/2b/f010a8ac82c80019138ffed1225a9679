@@ -1,0 +1,44 @@
+package com.tommystore.repository;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import org.springframework.stereotype.Repository;
+
+import com.tommystore.domain.InventoryItem;
+
+@Repository
+public class InventoryRepositoryImpl implements InventoryRepository {
+
+	@PersistenceContext
+	private EntityManager em;
+	
+	@Override
+	public InventoryItem findInventoryItemById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InventoryItem saveInventoryItem(InventoryItem inventoryItem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<InventoryItem> getInventoryItemList() {
+		TypedQuery<InventoryItem> query =  em.createQuery("From InventoryItem", InventoryItem.class);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<InventoryItem> findInventoryItemListByStock(int stock) {
+		TypedQuery<InventoryItem> query =  em.createQuery("From InventoryItem where stock <= :nStock", InventoryItem.class);
+		query.setParameter("nStock", stock);
+		return query.getResultList();
+	}
+
+}

@@ -1,0 +1,10 @@
+package com.tommystore.domain;
+
+
+public class StockHistory {
+	
+	private Integer id;
+	private InventoryItem inventoryItem;
+	private User user;
+	
+}

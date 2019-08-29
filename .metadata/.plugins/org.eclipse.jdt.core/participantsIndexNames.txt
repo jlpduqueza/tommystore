@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+/home/training-lee/tommystore/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3850686117.index
+/tommystore/src
+/home/training-lee/tommystore/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2789829710.index
+/tommystore/src

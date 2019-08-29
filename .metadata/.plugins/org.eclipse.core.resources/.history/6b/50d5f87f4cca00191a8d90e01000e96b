@@ -1,0 +1,29 @@
+package com.tommystore.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.tommystore.service.CategoryService;
+import com.tommystore.service.InventoryItemService;
+import com.tommystore.service.ProductService;
+
+@Controller
+@RequestMapping(value = "/admin")
+@PropertySource("/WEB-INF/properties")
+public class ProductController {
+
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private CategoryService categoryService;
+	
+	@Autowired
+	private InventoryItemService inventoryItemService;
+	
+	@Value("${inventory.nstock}")
+	private int nStock;
+}
