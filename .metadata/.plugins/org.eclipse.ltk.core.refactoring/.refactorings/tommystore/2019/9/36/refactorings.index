@@ -1,0 +1,3 @@
+1567399736045	Rename type 'InvalidUserRegistrationException'
+1567416803889	Rename method 'isValidCategoryName'
+1567417016849	Rename method 'isProductExistByNameAndCategoryId'

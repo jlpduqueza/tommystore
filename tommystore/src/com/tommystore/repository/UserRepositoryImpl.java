@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -14,6 +15,8 @@ import com.tommystore.bean.LoginBean;
 import com.tommystore.bean.SignUpBean;
 import com.tommystore.constant.Role;
 import com.tommystore.domain.User;
+import com.tommystore.exceptions.InvalidSavingUserException;
+import com.tommystore.exceptions.UserNotFoundException;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -27,30 +30,37 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public User saveUser(User user) {
-        if (user.getId() == null) {
-        	user.setRole(Role.USER);
-            em.persist(user);
-        } else {
-            user = em.merge(user);
-        }
-        return user;
+	public User saveUser(User user) throws InvalidSavingUserException {
+		try {
+	        if (user.getId() == null) {
+	        	user.setRole(Role.USER);
+	            em.persist(user);
+	        } else {
+	            user = em.merge(user);
+	        }
+	        return user;
+		} catch (Exception e) {
+			throw new InvalidSavingUserException();
+		}
 	}
 	
 	@Override
-	public User saveAdmin(User user) {
-        if (user.getId() == null) {
-        	user.setRole(Role.ADMIN);
-            em.persist(user);
-        } else {
-            user = em.merge(user);
-        }
-        return user;
+	public User saveAdmin(User user) throws InvalidSavingUserException {
+		try {
+	        if (user.getId() == null) {
+	        	user.setRole(Role.ADMIN);
+	            em.persist(user);
+	        } else {
+	            user = em.merge(user);
+	        }
+	        return user;
+		} catch (Exception e) {
+			throw new InvalidSavingUserException();
+		}
 	}
 	
 	@Override
-	public void saveAdminBySignUp(SignUpBean signUpBean) {
-		
+	public void saveAdminBySignUp(SignUpBean signUpBean) throws InvalidSavingUserException {
 		User user = new User();
 		user.setEmail(signUpBean.getEmail());
 		user.setPassword(signUpBean.getPassword());
@@ -62,25 +72,21 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public User validateLogin(LoginBean login) {
-		
+	public User validateLogin(LoginBean login) throws UserNotFoundException {
 		try {
-			System.out.println(login);
 			TypedQuery<User> query =  em.createQuery("From User where email = :email AND password = :pass", User.class);
 			query.setParameter("email", login.getEmail());
 			query.setParameter("pass", login.getPassword());
 			
 	        return query.getSingleResult();
-	        
-		} catch (RuntimeException e) {
-			
-			throw new RuntimeException("User does not exist.");
+		} catch (NoResultException e) {
+			System.out.println("No user found");
+			return null;
 		}
 	}
 
 	@Override
-	public void saveUserBySignUp(SignUpBean signUpBean) {
-		
+	public void saveUserBySignUp(SignUpBean signUpBean) throws InvalidSavingUserException {
 		User user = new User();
 		user.setEmail(signUpBean.getEmail());
 		user.setPassword(signUpBean.getPassword());
@@ -92,26 +98,65 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public List<User> getUserList() {
-		TypedQuery<User> query =  em.createQuery("From User", User.class);
-		return query.getResultList();
+	public List<User> getUserList() throws UserNotFoundException {
+		try {
+			TypedQuery<User> query =  em.createQuery("From User", User.class);
+			return query.getResultList();
+		} catch (NoResultException e) {
+			throw new UserNotFoundException();
+		}
 	}
 
 	@Override
-	public List<User> viewNewUser() {
+	public List<User> viewNewUser() throws UserNotFoundException {
 		Date currentDate = new Date();
 		Timestamp oneDayInterval = new Timestamp(currentDate.getTime() - (24*60*60*1000));
 		
-		TypedQuery<User> query = em.createQuery("FROM User WHERE createDateTime >= :oneDayInterval", User.class);
-		query.setParameter("oneDayInterval", oneDayInterval);
-		return query.getResultList();
+		try {
+			TypedQuery<User> query = em.createQuery("FROM User WHERE createDateTime >= :oneDayInterval", User.class);
+			query.setParameter("oneDayInterval", oneDayInterval);
+			return query.getResultList();
+		} catch (NoResultException e) {
+			throw new UserNotFoundException();
+		}
 	}
 
 	@Override
-	public List<User> findUserByRole(Role role) {
-		TypedQuery<User> query =  em.createQuery("From User where role=:role", User.class);
-		query.setParameter("role", role);
-		return query.getResultList();
+	public List<User> findUserByRole(Role role) throws UserNotFoundException {
+		try {
+			TypedQuery<User> query =  em.createQuery("From User where role=:role", User.class);
+			query.setParameter("role", role);
+			return query.getResultList();
+		} catch (NoResultException e) {
+			throw new UserNotFoundException();
+		}
 	}
 
+	@Override
+	public Boolean isUserExistByEmail(String email) {
+		TypedQuery<User> query =  em.createQuery("From User where email = :email", User.class);
+		query.setParameter("email", email);
+		
+		try {
+			query.getSingleResult();
+			return true;
+		} catch (NoResultException e) {
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean isValidToEdit(User user) {
+		TypedQuery<User> query =  em.createQuery("From User where email = :email AND id != :id", User.class);
+		query.setParameter("email", user.getEmail());
+		query.setParameter("id", user.getId());
+		
+		try {
+			query.getSingleResult();
+			return false;
+		} catch (NoResultException e) {
+			return true;
+		}
+	}
+	
 }

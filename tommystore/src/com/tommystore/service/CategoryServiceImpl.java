@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tommystore.domain.Category;
+import com.tommystore.exceptions.ObjectDeletionException;
 import com.tommystore.repository.CategoryRepository;
 
 @Service
@@ -42,14 +43,19 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	@Transactional
-	public Category findCategoryByName(String name) {
-		return categoryRepository.findCategoryByName(name);
+	public void deleteCategory(Integer id) throws ObjectDeletionException {
+		categoryRepository.deleteCategory(id);
 	}
 
 	@Override
 	@Transactional
-	public void deleteCategory(Integer id) {
-		categoryRepository.deleteCategory(id);
+	public Boolean isCategoryExistByName(String name) {
+		return categoryRepository.isCategoryExistByName(name);
+	}
+
+	@Override
+	public Boolean isValidToEditByIdAndName(Integer id, String name) {
+		return categoryRepository.isValidCategoryName(id, name);
 	}
 
 }

@@ -46,4 +46,14 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 		return inventoryRepository.getStockHistoryList();
 	}
 
+	@Override
+	public boolean isValidQuantity(String quantity) {
+		try {
+			Integer.parseInt(quantity);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
 }

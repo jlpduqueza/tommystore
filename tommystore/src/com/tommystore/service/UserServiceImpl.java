@@ -1,5 +1,6 @@
 package com.tommystore.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import com.tommystore.bean.LoginBean;
 import com.tommystore.bean.SignUpBean;
 import com.tommystore.constant.Role;
 import com.tommystore.domain.User;
+import com.tommystore.exceptions.InvalidSavingUserException;
+import com.tommystore.exceptions.UserNotFoundException;
 import com.tommystore.repository.UserRepository;
 
 @Service
@@ -26,43 +29,67 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public User saveUser(User user) {
+	public User saveUser(User user) throws InvalidSavingUserException {
 		return userRepository.saveUser(user);
 	}
 
 	@Override
 	@Transactional
-	public User validateLogin(LoginBean login) {
+	public User validateLogin(LoginBean login) throws UserNotFoundException {
 		return userRepository.validateLogin(login);
 	}
 
 	@Override
 	@Transactional
-	public void saveUserBySignUp(SignUpBean signUpBean) {
+	public void saveUserBySignUp(SignUpBean signUpBean) throws InvalidSavingUserException {
 		userRepository.saveUserBySignUp(signUpBean);
 	}
 
 	@Override
 	@Transactional
-	public List<User> getUserList() {
+	public List<User> getUserList() throws UserNotFoundException {
 		return userRepository.getUserList();
 	}
 
 	@Override
 	@Transactional
-	public List<User> viewNewUser() {
+	public List<User> viewNewUser() throws UserNotFoundException {
 		return userRepository.viewNewUser();
 	}
 
 	@Override
 	@Transactional
-	public void saveAdminBySignUp(SignUpBean signUpBean) {
+	public void saveAdminBySignUp(SignUpBean signUpBean) throws InvalidSavingUserException {
 		userRepository.saveAdminBySignUp(signUpBean);
 	}
 
 	@Override
-	public List<User> findUserByRole(Role role) {
+	@Transactional
+	public List<User> findUserByRole(Role role) throws UserNotFoundException {
 		return userRepository.findUserByRole(role);
+	}
+
+	@Override
+	@Transactional
+	public Boolean isUserExistByEmail(String email) {
+		return userRepository.isUserExistByEmail(email);
+	}
+
+	@Override
+	public List<String> getRoleList() {
+    	List<String> roleList = new ArrayList<>();
+    	roleList.add("All");
+    	
+    	for (Role role : Role.values()) {
+    		roleList.add(role.toString());
+    	}
+    	return roleList;
+	}
+
+	@Override
+	@Transactional
+	public Boolean isValidToEdit(User user) {
+		return userRepository.isValidToEdit(user);
 	}
 
 }

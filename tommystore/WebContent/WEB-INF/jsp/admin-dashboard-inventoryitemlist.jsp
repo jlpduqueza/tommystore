@@ -48,7 +48,7 @@
 				         <td><c:out value = "${inventoryItem.product.name}"/></td>
 				         <td><c:out value = "${inventoryItem.quantity}"/></td>
 				         <td>
-					         <a class="btn btn-dark" href="add-stock-view?id=${inventoryItem.id}" role="button">Add Stock</a>
+					         <a class="btn btn-dark" href="add-stock-view/${inventoryItem.id}" role="button">Add Stock</a>
 				         </td>
 			         </tr>
 		         </c:forEach>

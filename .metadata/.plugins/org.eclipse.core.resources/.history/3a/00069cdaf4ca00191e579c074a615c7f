@@ -1,0 +1,6 @@
+package com.tommystore.exceptions;
+
+
+public class UserNotFoundException {
+
+}

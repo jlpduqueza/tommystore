@@ -25,6 +25,13 @@
 		
 		<div class="container" style="background-color:; max-width:1080px">
 	        <h2>Add Category</h2>
+       		<c:choose>
+				<c:when test="${message!=null}">  
+					<div class="alert alert-danger" role="alert">
+				  		<c:out value = "${message}"/>	
+					</div>
+				</c:when>
+			</c:choose>
 	        <form:form action="edit-category" method="post" modelAttribute="category">
 			<div class="row">
 				<div class="col-md-4">

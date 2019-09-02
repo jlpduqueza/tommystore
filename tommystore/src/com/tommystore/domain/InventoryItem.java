@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.UpdateTimestamp;
@@ -28,6 +29,7 @@ public class InventoryItem {
 
 	@NotNull
 	@Column(nullable=false)
+	@Min(0)
 	private int quantity;
 	
 	@UpdateTimestamp

@@ -24,6 +24,13 @@
 	<div class="login-form">
     <form:form action="signing-up" method="post" modelAttribute="signUpBean">
 		<h2>Sign Up</h2>
+		<c:choose>
+			<c:when test="${message!=null}">  
+				<div class="alert alert-danger" role="alert">
+			  		<c:out value = "${message}"/>	
+				</div>
+		   </c:when>
+		</c:choose>
         <div class="form-group">
         	<form:input path="firstName" type="text" class="form-control" name="First name" placeholder="First name" required="required"/>
         	<form:errors path="firstName" cssStyle="color: #ff0000;"/>

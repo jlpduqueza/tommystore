@@ -54,7 +54,7 @@
 				         <td><c:out value = "${user.email}"/></td>
 				         <td><c:out value = "${user.contactNumber}"/></td>
 				         <td><c:out value = "${user.role}"/></td>
-				         <td><a class="btn btn-dark" href="edit-user-view?id=${user.id}" role="button">Edit</a></td>
+				         <td><a class="btn btn-dark" href="edit-user-view/${user.id}" role="button">Edit</a></td>
 			         </tr>
 		         </c:forEach>
               </tbody>

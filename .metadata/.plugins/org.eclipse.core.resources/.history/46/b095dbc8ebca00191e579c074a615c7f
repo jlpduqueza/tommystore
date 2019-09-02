@@ -1,0 +1,19 @@
+package com.tommystore.repository;
+
+import java.util.List;
+import java.util.Map;
+
+import com.tommystore.domain.Category;
+import com.tommystore.domain.Product;
+
+public interface CategoryRepository {
+
+	public Category findCategoryById(Integer id);
+	public Category findCategoryByName(String name);
+	public Category saveCategory(Category category);
+	public List<Product> findProductListByCategory(Category category);
+	public List<Category> getCategoryList();
+	public Map<Integer, String> getCategoryMap();
+	public void deleteCategory(Integer id);
+	
+}

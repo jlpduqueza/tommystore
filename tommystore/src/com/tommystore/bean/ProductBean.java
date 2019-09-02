@@ -1,7 +1,5 @@
 package com.tommystore.bean;
 
-import java.math.BigDecimal;
-
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -14,7 +12,7 @@ public class ProductBean {
 	private String name;
 	
 	@NotNull
-	private BigDecimal price;
+	private String price;
 	
 	@NotNull
 	private Category category;
@@ -29,12 +27,12 @@ public class ProductBean {
 	}
 
 	
-	public BigDecimal getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
 	
-	public void setPrice(BigDecimal price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 

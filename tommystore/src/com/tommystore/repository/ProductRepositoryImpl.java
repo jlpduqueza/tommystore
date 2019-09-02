@@ -3,6 +3,7 @@ package com.tommystore.repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -57,6 +58,32 @@ public class ProductRepositoryImpl implements ProductRepository {
 	public void deleteProductById(Integer id) {
 		em.remove(em.find(Product.class, id).getInventoryItem());
 		em.remove(em.find(Product.class, id));
+	}
+
+	@Override
+	public Boolean isProductExistByNameAndCategoryId(String name, Integer id) {
+		TypedQuery<Product> query =  em.createQuery("From Product where name = :name AND category.id = :id", Product.class);
+		query.setParameter("name", name);
+		query.setParameter("id", id);
+		
+		try {
+			query.getSingleResult();
+			return true;
+		} catch (NoResultException e) {
+			return false;
+		}
+	}
+
+	@Override
+	public List<Product> findProductByCategory(Integer id) {
+		TypedQuery<Product> query =  em.createQuery("From Product where category.id = :id", Product.class);
+		query.setParameter("id", id);
+		
+		try {
+			return query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 

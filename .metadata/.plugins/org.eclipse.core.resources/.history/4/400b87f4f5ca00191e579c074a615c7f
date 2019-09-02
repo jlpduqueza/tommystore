@@ -1,0 +1,5 @@
+db.url=jdbc:mysql://localhost:3306/tommy_store
+db.username=root
+db.password=
+
+inventory.nstock=10

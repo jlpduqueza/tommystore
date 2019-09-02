@@ -1,6 +1,5 @@
 package com.tommystore.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,14 +11,18 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tommystore.bean.RoleFilterBean;
 import com.tommystore.bean.SignUpBean;
 import com.tommystore.constant.Role;
 import com.tommystore.domain.User;
+import com.tommystore.exceptions.InvalidSavingUserException;
+import com.tommystore.exceptions.UserNotFoundException;
 import com.tommystore.service.InventoryItemService;
 import com.tommystore.service.UserService;
 
@@ -36,15 +39,19 @@ public class AdminController {
 	
 	@Value("${inventory.nstock}")
 	private int nStock;
+	
+	@Value("${invalid.user}")
+	private String invalidUserMessage;
+	
+	@Value("${invalid.savingUser}")
+	private String invalidSavingUser;
+	
+	@Value("${invalid.emailUsed}")
+	private String emailUsedMessage;
 
     @RequestMapping(value = "/user-list-view", method = RequestMethod.GET)
-    public String login(Model model) {
-    	List<String> roleList = new ArrayList<>();
-    	roleList.add("All");
-    	
-    	for (Role role : Role.values()) {
-    		roleList.add(role.toString());
-    	}
+    public String login(Model model) throws UserNotFoundException {
+    	List<String> roleList = userService.getRoleList();
     	
     	model.addAttribute("userList", userService.getUserList());
     	model.addAttribute("roleBean", new RoleFilterBean());
@@ -54,13 +61,8 @@ public class AdminController {
     }
     
     @RequestMapping(value = "/filter-user", method = RequestMethod.POST)
-    public String filterUser(@Valid RoleFilterBean roleBean, Model model) {
-    	List<String> roleList = new ArrayList<>();
-    	roleList.add("All");
-    	
-    	for (Role role : Role.values()) {
-    		roleList.add(role.toString());
-    	}
+    public String filterUser(@Valid RoleFilterBean roleBean, Model model) throws UserNotFoundException {
+    	List<String> roleList = userService.getRoleList();
     	
     	String role = roleBean.getRole();
     	
@@ -76,7 +78,7 @@ public class AdminController {
     }
     
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String dashboard(Model model) {
+    public String dashboard(Model model) throws UserNotFoundException {
     	model.addAttribute("userList", userService.viewNewUser());
     	model.addAttribute("inventoryItemList", inventoryItemService.findInventoryItemListByStock(nStock));
 		return "admin-dashboard";
@@ -89,29 +91,39 @@ public class AdminController {
     }
     
     @RequestMapping(value = "/add-admin", method = RequestMethod.POST)
-    public String addAdministrator(@Valid SignUpBean signUpBean, BindingResult result, Model model, HttpSession session) {
+    public String addAdministrator(@Valid SignUpBean signUpBean, BindingResult result, Model model, HttpSession session) throws InvalidSavingUserException {
     	
         if(!signUpBean.getConfirmPassword().equals(signUpBean.getPassword())) {
         	result.rejectValue("confirmPassword", "error.signUpBean", "Those password didn't match.");
         }
     	
         if (result.hasErrors()) {
-            return "sign-up";
+            return "admin-dashboard-add-administrator";
         }	
+        
+        if(userService.isUserExistByEmail(signUpBean.getEmail())) {
+        	model.addAttribute("message", emailUsedMessage);
+        	return "admin-dashboard-add-administrator";
+        }
         
         userService.saveAdminBySignUp(signUpBean);
 		return "redirect:dashboard";
     }
     
-    @RequestMapping(value = "/edit-user-view", method = RequestMethod.GET)
-    public String editUserView(Model model, @RequestParam("id") Integer userId) {
+    @RequestMapping(value = "/edit-user-view/{id}", method = RequestMethod.GET)
+    public String editUserView(Model model, @PathVariable("id") Integer userId) {
     	User user = userService.findUserById(userId);
     	model.addAttribute("userToEdit", user);
 		return "admin-dashboard-edit-user";
     }
     
     @RequestMapping(value = "/edit-user", method = RequestMethod.POST)
-    public String editUser(@Valid User user, BindingResult result,Model model) {
+    public String editUser(@Valid User user, BindingResult result,Model model, RedirectAttributes attributes) throws InvalidSavingUserException {
+    	
+    	if(!userService.isValidToEdit(user)) {
+    		attributes.addFlashAttribute("message", emailUsedMessage);
+    		return "redirect:edit-user-view/"+user.getId();
+    	}
     	
         if (result.hasErrors()) {
             return "sign-up";
@@ -119,6 +131,20 @@ public class AdminController {
         
         userService.saveUser(user);
 		return "redirect:dashboard";
+    }
+    
+    @ExceptionHandler(InvalidSavingUserException.class)
+    public String InvalidSavingUser(Exception ex, Model model, RedirectAttributes attributes) {
+        
+    	attributes.addFlashAttribute("message", invalidSavingUser);
+        return "error";
+    }
+    
+    @ExceptionHandler(UserNotFoundException.class)
+    public String UserNotFoundHandler(Exception ex, Model model, RedirectAttributes attributes) {
+        
+    	attributes.addFlashAttribute("message", invalidUserMessage);
+        return "error";
     }
     
 }

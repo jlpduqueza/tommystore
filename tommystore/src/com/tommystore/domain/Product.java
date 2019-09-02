@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.UpdateTimestamp;
@@ -34,6 +35,7 @@ public class Product {
 	
 	@NotNull
 	@Column(nullable=false, precision=7, scale=2)
+	@Digits(fraction = 2, integer = 5)
 	private BigDecimal price;
 
 	@NotNull

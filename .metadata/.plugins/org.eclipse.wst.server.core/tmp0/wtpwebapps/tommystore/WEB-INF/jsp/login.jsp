@@ -24,13 +24,18 @@
 	<div class="login-form">
     	<form:form action="logging-in" method="post" modelAttribute="loginBean">
 			<h2>Login</h2>
+			<c:choose>
+				<c:when test="${message!=null}">  
+					<div class="alert alert-danger" role="alert">
+				  		<c:out value = "${message}"/>	
+					</div>
+			   </c:when>
+			</c:choose>
 	        <div class="form-group">
 	        	<form:input path="email" type="text" class="form-control" name="email" placeholder="Email Address" required="required"/>
-	        	<form:errors path="email" cssStyle="color: #ff0000;"/>
 	        </div>
 			<div class="form-group">
 	            <form:input path="password" type="password" class="form-control" name="password" placeholder="Password" required="required"/>
-	       		<form:errors path="password" cssStyle="color: #ff0000;"/>
 	        </div>
 			<div class="form-group">
 	            <button type="submit" class="btn btn-primary btn-lg">Login</button>

@@ -1,0 +1,20 @@
+package com.tommystore.service;
+
+import java.util.List;
+
+import com.tommystore.bean.LoginBean;
+import com.tommystore.bean.SignUpBean;
+import com.tommystore.constant.Role;
+import com.tommystore.domain.User;
+
+public interface UserService {
+	
+	public User findUserById(Integer id);
+	public User saveUser(User user);
+	public User validateLogin(LoginBean login);
+    public void saveUserBySignUp(SignUpBean signUpBean);
+    public void saveAdminBySignUp(SignUpBean signUpBean);
+	public List<User> getUserList();
+	public List<User> viewNewUser();
+	public List<User> findUserByRole(Role role);
+}
