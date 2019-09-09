@@ -1,0 +1,6 @@
+package com.tommystore.domain;
+
+
+public class Cart {
+
+}

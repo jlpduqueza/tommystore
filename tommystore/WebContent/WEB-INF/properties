@@ -16,3 +16,8 @@ invalid.categoryDeletion = Failed to delete category.
 invalid.invalidPrice = Invalid price input.
 
 invalid.invalidQuantity = Invalid quantity input.
+
+invalid.zeroQuantity = Quantity to add must not be 0.
+invalid.noCart = You have no item in cart.
+
+insufficient.quantity = Insufficient stock.

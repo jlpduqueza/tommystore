@@ -1,6 +1,0 @@
-package com.tommystore.exceptions;
-
-
-public class CategoryCreationException {
-
-}

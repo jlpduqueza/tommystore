@@ -10,8 +10,10 @@ public interface ProductRepository {
 	public Product saveProduct(Product product);
 	public List<Product> findProductByCategory(Integer id);
 	public List<Product> getProductList();
+	public List<Product> getPopularProducts();
+	public List<Product> searchProduct(String keyword);
 	public Boolean isProductExistByNameAndCategoryId(String name, Integer id);
-//	public Boolean isValidPrice
+	public Boolean isNameValid(String name, Integer id);
 	public void generateProductId(Product product);
 	public void deleteProductById(Integer id);
 	

@@ -1,0 +1,6 @@
+package com.tommystore.repository;
+
+
+public class OrderItemRepositoryImpl implements OrderItemRepository {
+
+}

@@ -1,0 +1,11 @@
+package com.tommystore.repository;
+
+import com.tommystore.domain.Order;
+
+public interface OrderRepository {
+
+	public void checkOut(Order order);
+	public Order findProductById(Integer id);
+	public Order saveProduct(Order order);
+	
+}

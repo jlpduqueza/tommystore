@@ -52,10 +52,7 @@ public class InventoryController {
     @RequestMapping(value = "/add-stock", method = RequestMethod.POST)
     public String inventoryItem(@Valid InventoryItem inventoryItem, BindingResult result, Model model, HttpSession session, RedirectAttributes attributes) {
     	
-    	System.out.println("asf");
-    	
         if (result.hasErrors()) {
-        	System.out.println("asf2");
         	attributes.addFlashAttribute("message", invalidQuantityMessage);
     		return "redirect:add-stock-view/"+inventoryItem.getId();
         }	

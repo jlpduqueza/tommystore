@@ -104,6 +104,12 @@ public class ProductController {
     		return "admin-dashboard-edit-product";
     	}
     	
+        if(productService.isNameValid(productToEdit.getName(), productToEdit.getId())) {
+        	model.addAttribute("message", productNameUsedMessage);
+        	model.addAttribute("categoryMap",categoryService.getCategoryMap());
+            return "admin-dashboard-edit-product";
+        }
+    	
         if (result.hasErrors()) {
         	Product product = productService.findProductById(productToEdit.getId());
         	model.addAttribute("product", product);

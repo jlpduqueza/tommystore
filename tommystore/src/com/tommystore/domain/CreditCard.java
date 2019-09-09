@@ -22,7 +22,7 @@ public class CreditCard {
 	private String cardNumber;
 	
 	@NotNull
-	@Size(min = 10, max = 10)
+	@Size(min = 5, max = 5)
 	private String securityCode;
 	
 	@ManyToOne(optional=false)
@@ -34,6 +34,14 @@ public class CreditCard {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getCardNumber() {

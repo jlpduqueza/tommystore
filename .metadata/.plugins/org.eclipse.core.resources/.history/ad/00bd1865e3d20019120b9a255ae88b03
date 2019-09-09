@@ -1,0 +1,18 @@
+package com.tommystore.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.tommystore.domain.Order;
+import com.tommystore.domain.User;
+
+@Service
+public class CartServiceImpl implements CartService {
+	
+	@Override
+	@Transactional
+	public void checkOut(User user, Order order) {
+		// TODO Auto-generated method stub
+		
+	}
+}

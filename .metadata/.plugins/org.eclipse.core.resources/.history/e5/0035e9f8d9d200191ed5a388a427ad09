@@ -1,0 +1,64 @@
+package com.tommystore.domain;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "order")
+public class Order {
+
+	private Integer id;
+	
+	private List<OrderItem> orderItems;
+	
+	private LocalDateTime OrderedAt;
+	
+	@ManyToOne(optional=false)
+	private User user;
+	
+	@OneToOne
+	private ShippingAddress shippingAddress;
+	
+	@OneToOne
+	private CreditCard creditCard;
+	
+	private BigDecimal totalPrice;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
+
+	public LocalDateTime getOrderedAt() {
+		return OrderedAt;
+	}
+
+	public void setOrderedAt(LocalDateTime orderedAt) {
+		OrderedAt = orderedAt;
+	}
+
+	public BigDecimal getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(BigDecimal totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+}

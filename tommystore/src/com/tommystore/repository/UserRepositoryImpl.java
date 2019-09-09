@@ -80,7 +80,6 @@ public class UserRepositoryImpl implements UserRepository {
 			
 	        return query.getSingleResult();
 		} catch (NoResultException e) {
-			System.out.println("No user found");
 			return null;
 		}
 	}

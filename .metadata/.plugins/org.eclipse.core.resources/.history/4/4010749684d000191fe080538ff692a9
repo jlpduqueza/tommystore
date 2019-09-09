@@ -1,0 +1,24 @@
+package com.tommystore.bean;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+
+import com.tommystore.domain.User;
+
+public class ShippingAddressBean {
+
+	@Column(nullable=false)
+	private String address1;
+	
+	private String address2;
+	
+	private String zipCode;
+	
+	@ManyToOne(cascade=CascadeType.ALL,optional = false)
+	private User user;
+	
+	@Column(nullable=false)
+	private String Country;
+	
+}

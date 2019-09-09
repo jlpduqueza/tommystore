@@ -55,7 +55,6 @@ public class InventoryRepositoryImpl implements InventoryRepository {
 	public InventoryItem findInventoryItemByProductId(Integer id) {
 		TypedQuery<InventoryItem> query =  em.createQuery("From InventoryItem where product.id = :id", InventoryItem.class);
 		query.setParameter("id", id);
-		System.out.println(query.getSingleResult().getProduct().getName());
 		return query.getSingleResult();
 	}
 

@@ -50,7 +50,7 @@ public class AdminController {
 	private String emailUsedMessage;
 
     @RequestMapping(value = "/user-list-view", method = RequestMethod.GET)
-    public String login(Model model) throws UserNotFoundException {
+    public String login(Model model, HttpSession session) throws UserNotFoundException {
     	List<String> roleList = userService.getRoleList();
     	
     	model.addAttribute("userList", userService.getUserList());
@@ -66,7 +66,7 @@ public class AdminController {
     	
     	String role = roleBean.getRole();
     	
-    	if(!role.equals("ADMIN") || role.equals("USER")) {
+    	if(!role.equals("ADMIN") && !role.equals("USER")) {
         	return "redirect:user-list-view";
     	}
     	

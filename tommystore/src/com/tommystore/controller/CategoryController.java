@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tommystore.domain.Category;
-import com.tommystore.exceptions.ObjectDeletionException;
 import com.tommystore.service.CategoryService;
 import com.tommystore.service.ProductService;
 
@@ -94,7 +93,7 @@ public class CategoryController {
     }
     
     @RequestMapping(value = "/delete-category", method = RequestMethod.GET)
-    public String deleteCategory(Model model, @RequestParam("id") Integer id) throws ObjectDeletionException {
+    public String deleteCategory(Model model, @RequestParam("id") Integer id) {
 
 		if(productService.findProductByCategory(id).size() != 0) {
 	    	model.addAttribute("categoryList", categoryService.getCategoryList());

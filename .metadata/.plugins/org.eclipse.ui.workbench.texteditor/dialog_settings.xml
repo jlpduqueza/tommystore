@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="saveAdmin"/>
+		<item key="selection" value="ShippingAddress"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="ShippingAddres"/>
+			<item value="someMessage"/>
+			<item value="noCartMessage"/>
+			<item value="side"/>
+			<item value="suff"/>
+			<item value="cart"/>
+			<item value="top-nav"/>
+			<item value="top"/>
+			<item value="filter"/>
+			<item value="servlet"/>
+			<item value="null"/>
+			<item value="Used"/>
+			<item value="Used+"/>
 			<item value="saveadmin"/>
 			<item value="saveuser"/>
-			<item value="filter"/>
-			<item value="Integer id"/>
-			<item value="edit-category"/>
-			<item value="category-view"/>
-			<item value="category"/>
-			<item value="sign"/>
-			<item value="c"/>
-			<item value="add-stock"/>
-			<item value="edit-inventoryitem-view"/>
-			<item value="edit"/>
-			<item value="unique"/>
-			<item value="unqie"/>
-			<item value="fetch"/>
 		</list>
 		<list key="replacehistory">
+			<item value="ShippingAddress"/>
+			<item value="ShippingAddres"/>
 			<item value="inventoryItem"/>
 			<item value="InventoryItem"/>
 			<item value="product"/>

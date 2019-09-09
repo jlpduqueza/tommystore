@@ -1,6 +1,5 @@
 package com.tommystore.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,14 +18,16 @@ public class ShippingAddress {
 	
 	@Column(nullable=false)
 	private String address1;
-	
+
+	@Column(nullable=false)
 	private String address2;
-	
+
+	@Column(nullable=false)
 	private String zipCode;
 	
-	@ManyToOne(cascade=CascadeType.ALL,optional = false)
+	@ManyToOne(optional = false)
 	private User user;
-	
+
 	@Column(nullable=false)
 	private String Country;
 	
@@ -68,6 +69,14 @@ public class ShippingAddress {
 
 	public void setCountry(String country) {
 		Country = country;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

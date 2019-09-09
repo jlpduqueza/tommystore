@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.tommystore.domain.Category;
-import com.tommystore.exceptions.ObjectDeletionException;
 
 public interface CategoryRepository {
 
@@ -13,7 +12,7 @@ public interface CategoryRepository {
 	public List<Category> getCategoryList();
 	public Boolean isCategoryExistByName(String name);
 	public Map<Integer, String> getCategoryMap();
-	public void deleteCategory(Integer id) throws ObjectDeletionException;
+	public void deleteCategory(Integer id) ;
 	public Boolean isValidCategoryName(Integer id, String name);
 	
 	

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tommystore.domain.Category;
-import com.tommystore.exceptions.ObjectDeletionException;
 import com.tommystore.repository.CategoryRepository;
 
 @Service
@@ -43,7 +42,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	@Transactional
-	public void deleteCategory(Integer id) throws ObjectDeletionException {
+	public void deleteCategory(Integer id) {
 		categoryRepository.deleteCategory(id);
 	}
 

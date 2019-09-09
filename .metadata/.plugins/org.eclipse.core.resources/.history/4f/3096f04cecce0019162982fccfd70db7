@@ -1,0 +1,6 @@
+package com.tommystore.repository;
+
+
+public interface CartItemRepository {
+
+}

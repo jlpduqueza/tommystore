@@ -1,0 +1,9 @@
+package com.tommystore.service;
+
+
+public interface CartService {
+
+	private void checkOut() {
+		
+	}
+}

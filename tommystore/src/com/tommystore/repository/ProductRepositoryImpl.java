@@ -86,5 +86,32 @@ public class ProductRepositoryImpl implements ProductRepository {
 		}
 	}
 
+	@Override
+	public Boolean isNameValid(String name, Integer id) {
+		TypedQuery<Product> query =  em.createQuery("From Product where name = :name AND id != :id", Product.class);
+		query.setParameter("name", name);
+		query.setParameter("id", id);
+		
+		try {
+			query.getSingleResult();
+			return true;
+		} catch (NoResultException e) {
+			return false;
+		}
+	}
+
+	@Override
+	public List<Product> getPopularProducts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Product> searchProduct(String keyword) {
+		TypedQuery<Product> query =  em.createQuery("from Product where name like :keyword or category.name like :keyword", Product.class);
+		query.setParameter("keyword", "%"+keyword+"%");
+		return query.getResultList();
+	}
+
 
 }

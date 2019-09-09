@@ -30,18 +30,19 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<InventoryItem> getInventoryItemList() {
 		return inventoryRepository.getInventoryItemList();
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<InventoryItem> findInventoryItemListByStock(int stock) {
 		return inventoryRepository.findInventoryItemListByStock(stock);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<StockHistory> getStockHistoryList() {
 		return inventoryRepository.getStockHistoryList();
 	}
@@ -54,6 +55,17 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 		} catch (NumberFormatException e) {
 			return false;
 		}
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public boolean isQuantitySufficient(int quantity, Integer id) {
+		
+		if(inventoryRepository.findInventoryItemById(id).getQuantity() >= quantity) {
+			return true;
+		}
+		
+		return false;
 	}
 
 }

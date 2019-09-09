@@ -1,0 +1,71 @@
+package com.tommystore.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.tommystore.domain.CartItem;
+import com.tommystore.service.ProductService;
+
+@Controller
+@RequestMapping(value = "/user")
+public class UserController {
+    
+	@Autowired
+	private ProductService productService;
+	
+    @RequestMapping(value = "/add-address-view", method = RequestMethod.POST)
+    public String addAddressView(Model model) {
+    	
+		return "user-add-address";
+    }
+    
+    @RequestMapping(value = "/add-address", method = RequestMethod.POST)
+    public String addAddress(Model model) {
+    	
+		return "user-add-address";
+    }
+
+    @RequestMapping(value = "/add-credit-card-view", method = RequestMethod.POST)
+    public String addCreditCardView(Model model, @RequestParam("id") Integer id) {
+		return "user-add-creditcard";
+    }
+    
+    @RequestMapping(value = "/add-credit-card", method = RequestMethod.POST)
+    public String addCreditCard(Model model) {
+    	
+		return "user-add-creditcard";
+    }
+    
+    @RequestMapping(value = "/add-to-cart-view", method = RequestMethod.GET)
+    public String addToCartView(Model model, @RequestParam("id") Integer id) {
+
+    	model.addAttribute("product", productService.findProductById(id));
+    	model.addAttribute("cartItem", new CartItem());
+		return "user-addtocart";
+    }
+    
+    @RequestMapping(value = "/add-to-cart", method = RequestMethod.POST)
+    public String addToCart(@Valid CartItem cartItem, Model model) {
+    	
+		return "redirect:/";
+    }
+    
+    @RequestMapping(value = "/my-account", method = RequestMethod.POST)
+    public String myAccount(Model model) {
+    	
+		return "user-my-account";
+    }
+    
+    @RequestMapping(value = "/cart", method = RequestMethod.POST)
+    public String cartView(Model model) {
+    	
+		return "user-cart";
+    }
+	
+}

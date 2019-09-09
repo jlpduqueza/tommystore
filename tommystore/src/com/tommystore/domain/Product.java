@@ -18,7 +18,9 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 @Table(name = "product" ,uniqueConstraints = { @UniqueConstraint(columnNames = {"name", "category_id"}) })
 public class Product {
@@ -34,22 +36,22 @@ public class Product {
 	private String name;
 	
 	@NotNull
-	@Column(nullable=false, precision=7, scale=2)
-	@Digits(fraction = 2, integer = 5)
+	@Column(nullable=false, precision=9, scale=2)
+	@Digits(fraction = 2, integer = 7)
 	private BigDecimal price;
 
 	@NotNull
 	@ManyToOne(optional=false) 
 	private Category category;
 	
-	@OneToOne(mappedBy="product", optional=false, orphanRemoval=true, cascade= CascadeType.PERSIST)  
+	@OneToOne(mappedBy="product", optional=false, orphanRemoval=true, cascade=CascadeType.ALL)  
 	private InventoryItem inventoryItem;
 
 	@UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateDateTime;
 
-	@UpdateTimestamp
+	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDateTime;
 

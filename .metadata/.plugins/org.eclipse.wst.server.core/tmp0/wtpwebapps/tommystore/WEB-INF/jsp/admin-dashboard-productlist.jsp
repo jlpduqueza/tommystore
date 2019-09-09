@@ -46,8 +46,10 @@
 				         <td><c:out value = "${product.category.name}"/></td>
 				         <td><c:out value = "${product.createDateTime}"/></td>
 				         <td><c:out value = "${product.updateDateTime}"/></td>
-				         <td><a class="btn btn-dark" href="edit-product-view?id=${product.id}" role="button">Edit</a></td>
-   				         <td><a class="btn btn-dark" href="delete-product?id=${product.id}" role="button">Delete</a></td>
+				         <td>
+					         <a class="btn btn-dark" href="edit-product-view?id=${product.id}" role="button">Edit</a>
+					         <a class="btn btn-dark" href="delete-product?id=${product.id}" role="button">Delete</a>
+				         </td>
 			         </tr>
 		         </c:forEach>
               </tbody>

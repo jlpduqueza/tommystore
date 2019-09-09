@@ -1,0 +1,13 @@
+package com.tommystore.repository;
+
+import java.util.List;
+
+import com.tommystore.domain.CartItem;
+
+public interface CartItemRepository {
+
+	public CartItem findCartItemById(Integer id);
+	public CartItem saveCartItem(CartItem cartItem);
+	public List<CartItem> getCartItemList();
+	public void deleteCartItem(Integer id) ;
+}

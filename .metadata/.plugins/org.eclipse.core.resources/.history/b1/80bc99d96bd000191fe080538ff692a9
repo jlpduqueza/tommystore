@@ -1,0 +1,14 @@
+package com.tommystore.service;
+
+import java.util.List;
+
+import com.tommystore.domain.ShippingAddress;
+
+public interface ShippingAddresssService {
+
+	public ShippingAddress findOrderItemById(Integer id);
+	public ShippingAddress saveOrderItem(ShippingAddress creditCard);
+	public List<ShippingAddress> getCreditCardList();
+	
+}
+

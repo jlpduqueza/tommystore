@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tommystore.bean.LoginBean;
+import com.tommystore.bean.SearchBean;
 import com.tommystore.bean.SignUpBean;
 import com.tommystore.constant.Role;
 import com.tommystore.domain.User;
 import com.tommystore.exceptions.DataAccessException;
 import com.tommystore.exceptions.InvalidSavingUserException;
 import com.tommystore.exceptions.UserNotFoundException;
+import com.tommystore.service.ProductService;
 import com.tommystore.service.UserService;
 
 @Controller
@@ -30,28 +32,43 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private ProductService productService;
+	
 	@Value("${invalid.user}")
 	private String errorMessage;
 	
 	@Value("${invalid.emailUsed}")
 	private String emailUsedMessage;
 	
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(Model model) {
+    	model.addAttribute("loginBean", new LoginBean());
+		return "login";
+    }
+	
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String initForm(Model model, HttpSession session) throws DataAccessException {
     	User user = (User) session.getAttribute("user");
     	if(user == null) {
+        	model.addAttribute("productList", productService.getProductList());
+        	model.addAttribute("searchBean", new SearchBean());
     		return "home";
     	}
     	if(userService.findUserById(user.getId()).getRole().equals(Role.ADMIN)) {
     		return "redirect:/admin/dashboard";
     	}
+    	model.addAttribute("productList", productService.getProductList());
+    	model.addAttribute("searchBean", new SearchBean());
 		return "home";
     }
     
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model) {
-    	model.addAttribute("loginBean", new LoginBean());
-		return "login";
+    @RequestMapping(value = "/search-product", method = RequestMethod.POST)
+    public String productView(@Valid SearchBean searchBean, Model model) {
+    	
+    	model.addAttribute("productList", productService.searchProduct(searchBean.getKeyword()));
+    	model.addAttribute("searchBean", new SearchBean());
+		return "home";
     }
     
     @RequestMapping(value = "/logout", method = RequestMethod.GET)

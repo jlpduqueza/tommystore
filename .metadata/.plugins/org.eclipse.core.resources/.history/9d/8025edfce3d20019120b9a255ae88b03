@@ -1,0 +1,11 @@
+package com.tommystore.service;
+
+import com.tommystore.domain.Order;
+import com.tommystore.domain.User;
+
+@Service
+public interface OrderService {
+
+	public void checkOut(User user, Order order);
+	
+}

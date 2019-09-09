@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;user-cart.jsp&apos; to &apos;user-add-address.jsp&apos;&#x0A;- Original project: &apos;tommystore&apos;&#x0A;- Destination element: &apos;user-add-address.jsp&apos;&#x0A;- Original element: &apos;user-cart.jsp&apos;" description="Copy file" element1="WebContent/WEB-INF/jsp/user-cart.jsp" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1568006640600" target="/tommystore/WebContent/WEB-INF/jsp/user-add-address.jsp" units="0" version="1.0"/>
+</session>

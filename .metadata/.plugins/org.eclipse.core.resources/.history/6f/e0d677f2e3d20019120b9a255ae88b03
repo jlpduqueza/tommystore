@@ -1,0 +1,14 @@
+package com.tommystore.repository;
+
+import com.tommystore.domain.Order;
+import com.tommystore.domain.User;
+
+@Repository
+public class OrderRepositoryImpl implements OrderRepository {
+
+	@Override
+	public void checkOut(User user, Order order) {
+				
+	}
+
+}

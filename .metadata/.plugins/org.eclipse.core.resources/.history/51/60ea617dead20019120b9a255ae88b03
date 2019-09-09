@@ -1,0 +1,50 @@
+package com.tommystore.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.tommystore.domain.Cart;
+import com.tommystore.domain.CartItem;
+import com.tommystore.domain.OrderItem;
+import com.tommystore.repository.OrderItemRepository;
+
+public class OrderItemServiceImpl implements OrderItemService {
+
+	@Autowired
+	private OrderItemRepository orderItemRepository;
+	
+	@Override
+	public OrderItem findOrderItemById(Integer id) {
+		return orderItemRepository.findOrderItemById(id);
+	}
+
+	@Override
+	public OrderItem saveOrderItem(OrderItem orderItem) {
+		return orderItemRepository.saveOrderItem(orderItem);
+	}
+
+	@Override
+	public List<OrderItem> getOrderItemList() {
+		return orderItemRepository.getOrderItemList();
+	}
+
+	@Override
+	public List<OrderItem> generateOrderItemByCart(Cart cart) {
+		
+		List<CartItem> cartItemList = new ArrayList<>(cart.getCartItemMap().values());
+		List<OrderItem> orderItemList = new ArrayList<>();
+		
+		for(CartItem cartItem : cartItemList) {
+			OrderItem orderItem = new OrderItem();
+			orderItem.setPrice(cartItem.getProduct().getPrice());
+			orderItem.setProduct(cartItem.getProduct());
+			orderItem.setQuantity(cartItem.getQuantity());
+			orderItemList.add(orderItem);
+		}
+		
+		return orderItemList;
+	}
+
+}

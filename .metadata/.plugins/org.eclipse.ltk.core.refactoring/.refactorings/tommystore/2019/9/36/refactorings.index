@@ -1,3 +1,33 @@
 1567399736045	Rename type 'InvalidUserRegistrationException'
 1567416803889	Rename method 'isValidCategoryName'
 1567417016849	Rename method 'isProductExistByNameAndCategoryId'
+1567489326520	Rename method 'isValidName'
+1567493596536	Rename compilation unit 'adminFilter.java'
+1567493871521	Delete element
+1567496339334	Delete element
+1567509736487	Copy file
+1567570758357	Rename resource 'add-to-cart-view.jsp'
+1567570774328	Rename resource 'user-add-to-cart-view.jsp'
+1567584646654	Rename type 'OrderItem'
+1567593747834	Delete elements
+1567665559937	Rename field 'cartItemList'
+1567665572820	Rename local variable 'cartItemList'
+1567665801827	Rename method 'getCartItemList'
+1567665814474	Rename method 'setCartItemList'
+1567679905850	Rename local variable 'cartItemList'
+1567680077527	Rename field 'insufficientQuantity'
+1567749394934	Rename local variable 'orderItem'
+1567749517538	Rename local variable 'creditCard'
+1567749571296	Rename method 'findOrderItemById'
+1567749581266	Rename method 'saveOrderItem'
+1567749591516	Rename method 'getCreditCardList'
+1567749635497	Rename method 'findOrderItemById'
+1567749644748	Rename method 'saveOrderItem'
+1567751134148	Delete element
+1567751160173	Delete element
+1567755575292	Copy file
+1567755590027	Copy file
+1567760687509	Rename local variable 'creditCard'
+1567761634929	Rename local variable 'roleList'
+1567761670984	Rename local variable 'role'
+1567761995438	Rename field 'Country'

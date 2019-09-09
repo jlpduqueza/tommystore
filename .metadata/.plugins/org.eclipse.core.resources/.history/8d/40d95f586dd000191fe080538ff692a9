@@ -1,0 +1,27 @@
+package com.tommystore.repository;
+
+import java.util.List;
+
+import com.tommystore.domain.ShippingAddress;
+
+public class ShippingAddressRepositoryImpl implements ShippingAddressRepository {
+
+	@Override
+	public ShippingAddress findShippingAddressById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ShippingAddress saveShippingAddress(ShippingAddress shippingAddress) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ShippingAddress> getShippingAddress() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

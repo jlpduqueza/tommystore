@@ -1,0 +1,6 @@
+package com.tommystore.bean;
+
+
+public class ShippingAddressBean {
+
+}

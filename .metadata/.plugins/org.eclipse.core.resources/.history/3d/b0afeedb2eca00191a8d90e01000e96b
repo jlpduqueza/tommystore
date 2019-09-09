@@ -1,8 +1,0 @@
-package com.tommystore.bean;
-
-
-public class RoleFilterBean {
-
-	private String role;
-	
-}

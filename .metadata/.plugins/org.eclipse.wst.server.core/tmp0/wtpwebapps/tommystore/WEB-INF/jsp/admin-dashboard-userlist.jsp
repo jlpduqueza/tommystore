@@ -43,7 +43,7 @@
                   <th>Email</th>
                   <th>Contact number</th>
                   <th>Role</th>
-                  <th>Action</th>
+<!--                   <th>Action</th> -->
                 </tr>
               </thead>
               <tbody>
@@ -54,7 +54,7 @@
 				         <td><c:out value = "${user.email}"/></td>
 				         <td><c:out value = "${user.contactNumber}"/></td>
 				         <td><c:out value = "${user.role}"/></td>
-				         <td><a class="btn btn-dark" href="edit-user-view/${user.id}" role="button">Edit</a></td>
+				    <%--      <td><a class="btn btn-dark" href="edit-user-view/${user.id}" role="button">Edit</a></td> --%>
 			         </tr>
 		         </c:forEach>
               </tbody>

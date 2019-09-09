@@ -46,13 +46,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<User> getUserList() throws UserNotFoundException {
 		return userRepository.getUserList();
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<User> viewNewUser() throws UserNotFoundException {
 		return userRepository.viewNewUser();
 	}
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<User> findUserByRole(Role role) throws UserNotFoundException {
 		return userRepository.findUserByRole(role);
 	}

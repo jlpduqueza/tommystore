@@ -1,0 +1,18 @@
+package com.tommystore.domain;
+
+import java.util.Map;
+
+public class Cart {
+
+	private Map<Integer, CartItem> cartItemList;
+
+	public Map<Integer, CartItem> getCartItemList() {
+		return cartItemList;
+	}
+
+	public void setCartItemList(Map<Integer, CartItem> cartItemList) {
+		this.cartItemList = cartItemList;
+	}
+
+	
+}

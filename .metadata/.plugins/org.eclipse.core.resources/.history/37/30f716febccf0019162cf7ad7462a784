@@ -1,0 +1,27 @@
+package com.tommystore.service;
+
+import java.util.List;
+
+import com.tommystore.domain.OrderItem;
+
+public class OrderItemServiceImpl implements OrderItemService {
+
+	@Override
+	public OrderItem findOrderItemById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OrderItem saveOrderItem(OrderItem orderItem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderItem> getOrderItemList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

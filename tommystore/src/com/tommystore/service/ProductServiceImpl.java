@@ -17,6 +17,7 @@ public class ProductServiceImpl implements ProductService{
 	private ProductRepository productRepository;
 	
 	@Override
+	@Transactional
 	public Product findProductById(Integer id) {
 		return productRepository.findProductById(id);
 	}
@@ -28,7 +29,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<Product> getProductList() {
 		return productRepository.getProductList();
 	}
@@ -41,24 +42,39 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	@Transactional
-	public boolean isProductExistByNameAndCategoryId(String name, Integer id) {
+	public Boolean isProductExistByNameAndCategoryId(String name, Integer id) {
 		return productRepository.isProductExistByNameAndCategoryId(name,id);
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<Product> findProductByCategory(Integer id) {
 		return productRepository.findProductByCategory(id);
 	}
 
 	@Override
-	public boolean isPriceValid(String price) {
+	public Boolean isPriceValid(String price) {
 		try {
 			new BigDecimal(price);
 			return true;
 		} catch (NumberFormatException e) {
 			return false;
 		}
+	}
+
+	@Override
+	public Boolean isNameValid(String name, Integer id) {
+		return productRepository.isNameValid(name, id);
+	}
+
+	@Override
+	public List<Product> getPopularProducts() {
+		return productRepository.getPopularProducts();
+	}
+
+	@Override
+	public List<Product> searchProduct(String keyword) {
+		return productRepository.searchProduct(keyword);
 	}
 
 }

@@ -1,0 +1,31 @@
+package com.tommystore.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.tommystore.domain.CreditCard;
+import com.tommystore.repository.CreditCardRepository;
+
+public class CreditCardServiceImpl implements CreditCardService {
+
+	@Autowired
+	private CreditCardRepository creditCardRepository;
+	
+	@Override
+	public CreditCard findCreditCardById(Integer id) {
+		return creditCardRepository;
+	}
+
+	@Override
+	public CreditCard saveOrderItem(CreditCard creditCard) {
+		return null;
+	}
+
+	@Override
+	public List<CreditCard> getCreditCardList() 
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
