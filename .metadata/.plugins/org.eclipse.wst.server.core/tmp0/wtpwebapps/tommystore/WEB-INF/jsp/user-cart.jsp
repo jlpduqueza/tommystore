@@ -34,8 +34,9 @@
               <thead>
                 <tr>
                   <th>Product Name</th>
-                  <th>Quantity</th>
+                  <th>Stock</th>
                   <th>Price</th>
+                  <th>Quantity</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -43,8 +44,9 @@
 		         <c:forEach var="cartItem" items="${cartItemMap}">
 			         <tr>
 				         <td><c:out value = "${cartItem.value.product.name}"/></td>
-				         <td><c:out value = "${cartItem.value.quantity}"/></td>
+				         <td><c:out value = "${cartItem.value.product.inventoryItem.quantity}"/></td>
 				         <td><c:out value = "${cartItem.value.product.price}"/></td>
+				         <td><c:out value = "${cartItem.value.quantity}"/></td>
 				         <td>
 					         <a class="btn btn-dark" href="edit-product-view?id=${cartItem.value.product.id}" role="button">Edit</a>
 					         <a class="btn btn-dark" href="delete-cartitem?id=${cartItem.value.product.id}" role="button">Delete</a>

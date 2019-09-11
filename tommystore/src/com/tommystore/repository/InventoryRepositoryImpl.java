@@ -29,6 +29,7 @@ public class InventoryRepositoryImpl implements InventoryRepository {
 	        em.persist(inventoryItem);
         } else {
             inventoryItem = em.merge(inventoryItem);
+            //note put this to save stock history
             StockHistory stockHistory = new StockHistory();
             stockHistory.setInventoryItem(inventoryItem);
             stockHistory.setUser(user);

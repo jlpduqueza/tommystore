@@ -6,9 +6,13 @@
 <typeInfo handle="=tommystore/src&lt;com.tommystore.repository{ProductRepository.java[ProductRepository" modifiers="513" timestamp="1567502833585"/>
 <typeInfo handle="=tommystore/src&lt;com.tommystore.service{InventoryItemService.java[InventoryItemService" modifiers="513" timestamp="1567670077435"/>
 <typeInfo handle="=tommystore/src&lt;com.tommystore.repository{InventoryRepository.java[InventoryRepository" modifiers="513" timestamp="1567075042844"/>
-<typeInfo handle="=tommystore/src&lt;com.tommystore.repository{CreditCardRepository.java[CreditCardRepository" modifiers="513" timestamp="1567749644727"/>
-<typeInfo handle="=tommystore/src&lt;com.tommystore.repository{ShippingAddressRepository.java[ShippingAddressRepository" modifiers="513" timestamp="1567749617113"/>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.repository{CreditCardRepository.java[CreditCardRepository" modifiers="513" timestamp="1567758308753"/>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.repository{ShippingAddressRepository.java[ShippingAddressRepository" modifiers="513" timestamp="1567758276619"/>
 <typeInfo handle="=tommystore/\/home\/training-lee\/.m2\/repository\/org\/hibernate\/hibernate-core\/5.2.12.Final\/hibernate-core-5.2.12.Final.jar&lt;org.hibernate(SharedSessionBuilder.class[SharedSessionBuilder" modifiers="1537" timestamp="1563358826255"/>
 <typeInfo handle="=tommystore/\/usr\/java\/jdk1.8.0_31\/jre\/lib\/rt.jar&lt;java.awt(Shape.class[Shape" modifiers="1537" timestamp="1430372531151"/>
-<typeInfo handle="=tommystore/src&lt;com.tommystore.service{CreditCardService.java[CreditCardService" modifiers="513" timestamp="1567750016718"/>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.service{CreditCardService.java[CreditCardService" modifiers="513" timestamp="1567758322379"/>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.service{CartService.java[CartService" modifiers="513" timestamp="1568021043762"/>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.service{CartItemService.java[CartItemService" modifiers="513" timestamp="1567679660138"/>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.service{OrderService.java[OrderService" modifiers="513" timestamp="1568088307628"/>
+<typeInfo handle="=tommystore/src&lt;com.tommystore.repository{OrderItemRepository.java[OrderItemRepository" modifiers="513" timestamp="1568104604094"/>
 </typeInfoHistroy>

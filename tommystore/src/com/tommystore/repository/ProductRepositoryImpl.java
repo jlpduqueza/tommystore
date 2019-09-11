@@ -27,6 +27,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 	public Product saveProduct(Product product) {
         if (product.getId() == null) {
 
+        	//note use method for this
         	InventoryItem inventoryItem = new InventoryItem();
         	inventoryItem.setQuantity(0);
         	inventoryItem.setProduct(product);

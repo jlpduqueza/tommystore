@@ -47,6 +47,7 @@
 				<div class="form-group">
 					<form:hidden path="product.id" value="${product.id}"/>
 					<form:hidden path="product.name" value="${product.name}"/>
+					<form:hidden path="product.inventoryItem.quantity" value="${product.inventoryItem.quantity}"/>
 					<form:hidden path="product.price" value="${product.price}"/>
 		            <form:button type="submit" class="btn btn-primary btn-lg">Add To Cart</form:button>
 		        </div>

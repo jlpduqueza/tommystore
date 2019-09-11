@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tommystore.bean.ShippingAddressBean;
 import com.tommystore.constant.Country;
 import com.tommystore.domain.ShippingAddress;
+import com.tommystore.domain.User;
 import com.tommystore.repository.ShippingAddressRepository;
 
 @Service
@@ -49,6 +51,20 @@ public class ShippingAddressServiceImpl implements ShippingAddressService{
     		countryList.add(country);
     	}
     	return countryList;
+	}
+
+	@Override
+	@Transactional
+	public ShippingAddress saveShippingAddressByBean(ShippingAddressBean shippingAddressBean, User user) {
+    	ShippingAddress shippingAddress = new ShippingAddress();
+    	shippingAddress.setAddress1(shippingAddressBean.getAddress1());
+    	shippingAddress.setAddress2(shippingAddressBean.getAddress2());
+    	shippingAddress.setCountry(shippingAddressBean.getCountry());
+    	shippingAddress.setZipCode(shippingAddressBean.getZipCode());
+    	shippingAddress.setUser(user);
+    	saveShippingAddress(shippingAddress);
+    	
+    	return shippingAddress;
 	}
 
 }

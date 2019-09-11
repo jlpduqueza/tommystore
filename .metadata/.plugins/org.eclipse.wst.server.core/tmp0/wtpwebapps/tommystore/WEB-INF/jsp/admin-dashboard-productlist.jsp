@@ -49,6 +49,7 @@
 				         <td>
 					         <a class="btn btn-dark" href="edit-product-view?id=${product.id}" role="button">Edit</a>
 					         <a class="btn btn-dark" href="delete-product?id=${product.id}" role="button">Delete</a>
+					         <a class="btn btn-dark" href="product-orders-view?id=${product.id}" role="button">Orders</a>
 				         </td>
 			         </tr>
 		         </c:forEach>

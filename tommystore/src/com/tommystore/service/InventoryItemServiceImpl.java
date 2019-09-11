@@ -68,4 +68,13 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 		return false;
 	}
 
+	@Override
+	@Transactional
+	public InventoryItem addStock(InventoryItem inventoryItem, User user) {
+        InventoryItem inventoryItemToMerge = findInventoryItemById(inventoryItem.getId());
+        inventoryItemToMerge.setQuantity(inventoryItem.getQuantity());
+        
+		return saveInventoryItem(inventoryItemToMerge, user);
+	}
+
 }

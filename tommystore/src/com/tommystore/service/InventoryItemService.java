@@ -15,4 +15,5 @@ public interface InventoryItemService {
 	public List<InventoryItem> getInventoryItemList();
 	public List<StockHistory> getStockHistoryList();
 	public List<InventoryItem> findInventoryItemListByStock(int stock);
+	public InventoryItem addStock(InventoryItem inventoryItem, User user);
 }

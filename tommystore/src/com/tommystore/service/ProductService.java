@@ -2,6 +2,7 @@ package com.tommystore.service;
 
 import java.util.List;
 
+import com.tommystore.bean.ProductBean;
 import com.tommystore.domain.Product;
 
 public interface ProductService {
@@ -16,5 +17,6 @@ public interface ProductService {
 	public Boolean isPriceValid(String price);
 	public Boolean isNameValid(String name, Integer id);
 	public void deleteProductById(Integer id);
+	public Product saveProductByBean(ProductBean productBean);
 	
 }

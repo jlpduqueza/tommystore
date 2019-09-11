@@ -68,19 +68,14 @@ public class InventoryItem {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-
-	public Integer getQuantity() {
+	
+	public int getQuantity() {
 		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
 	}
 
 	public List<StockHistory> getStockHistoryList() {
 		return stockHistoryList;
 	}
-
 	
 	public void setStockHistoryList(List<StockHistory> stockHistoryList) {
 		this.stockHistoryList = stockHistoryList;

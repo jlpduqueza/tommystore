@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tommystore.bean.CreditCardBean;
 import com.tommystore.domain.CreditCard;
+import com.tommystore.domain.User;
 import com.tommystore.repository.CreditCardRepository;
 
 @Service
@@ -37,6 +39,17 @@ public class CreditCardServiceImpl implements CreditCardService {
 	@Transactional
 	public void deleteCreditCardById(Integer id) {
 		creditCardRepository.deleteCreditCardById(id);
+	}
+
+	@Override
+	@Transactional
+	public CreditCard saveCreditCardByBean(CreditCardBean creditCardBean, User user) {
+    	CreditCard creditCard = new CreditCard();
+    	creditCard.setCardNumber(creditCardBean.getCardNumber());
+    	creditCard.setSecurityCode(creditCardBean.getSecurityCode());
+    	creditCard.setUser(user);
+    	
+		return saveCreditCard(creditCard);
 	}
 
 }

@@ -66,6 +66,7 @@ public class AdminController {
     	
     	String role = roleBean.getRole();
     	
+    	//note put this to service role checker
     	if(!role.equals("ADMIN") && !role.equals("USER")) {
         	return "redirect:user-list-view";
     	}

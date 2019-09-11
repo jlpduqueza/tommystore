@@ -87,6 +87,7 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	public void saveUserBySignUp(SignUpBean signUpBean) throws InvalidSavingUserException {
 		User user = new User();
+		//note put this to one method 
 		user.setEmail(signUpBean.getEmail());
 		user.setPassword(signUpBean.getPassword());
 		user.setContactNumber(signUpBean.getContactNumber());

@@ -21,6 +21,7 @@ import com.tommystore.bean.ProductBean;
 import com.tommystore.domain.Category;
 import com.tommystore.domain.Product;
 import com.tommystore.service.CategoryService;
+import com.tommystore.service.OrderItemService;
 import com.tommystore.service.ProductService;
 
 @Controller
@@ -33,6 +34,9 @@ public class ProductController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private OrderItemService orderItemService;
 	
 	@Value("${inventory.nstock}")
 	private int nStock;
@@ -76,12 +80,7 @@ public class ProductController {
             return "admin-dashboard-add-product";
         }
         
-        Product product = new Product();
-        Category category = categoryService.findCategoryById(productBean.getCategory().getId());
-        product.setCategory(category);
-        product.setName(productBean.getName());
-        product.setPrice(new BigDecimal(productBean.getPrice()));
-        productService.saveProduct(product);
+        productService.saveProductByBean(productBean);
 		return "redirect:dashboard";
     }
     
@@ -93,6 +92,7 @@ public class ProductController {
 		return "admin-dashboard-edit-product";
     }
     
+    //note convert this to productBean
     @RequestMapping(value = "/edit-product", method = RequestMethod.POST)
     public String editCategory(@Valid Product productToEdit, BindingResult result, Model model) {
     	
@@ -129,6 +129,12 @@ public class ProductController {
     public String deleteProduct(Model model, @RequestParam("id") Integer id) {
     	productService.deleteProductById(id);
 		return "redirect:product-list-view";
+    }
+    
+    @RequestMapping(value = "/product-orders-view", method = RequestMethod.GET)
+    public String showOrderPerProduct(Model model, @RequestParam("id") Integer id) {
+    	model.addAttribute("orderListPerProduct", orderItemService.findOrderItemsByProductId(id));
+		return "admin-dashboard-product-orders-view";
     }
     
     @ExceptionHandler(NumberFormatException.class)

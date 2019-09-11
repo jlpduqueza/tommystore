@@ -1,8 +1,0 @@
-db.url=jdbc:mysql://localhost:3306/tommy_store
-db.username=root
-db.password=
-
-inventory.nstock=9
-
-invalid.user = Invalid username and password
-invalid.savingUser = Invalid username and password

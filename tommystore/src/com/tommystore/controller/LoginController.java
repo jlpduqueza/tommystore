@@ -22,6 +22,7 @@ import com.tommystore.domain.User;
 import com.tommystore.exceptions.DataAccessException;
 import com.tommystore.exceptions.InvalidSavingUserException;
 import com.tommystore.exceptions.UserNotFoundException;
+import com.tommystore.service.OrderItemService;
 import com.tommystore.service.ProductService;
 import com.tommystore.service.UserService;
 
@@ -34,6 +35,9 @@ public class LoginController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private OrderItemService orderItemService;
 	
 	@Value("${invalid.user}")
 	private String errorMessage;
@@ -51,14 +55,16 @@ public class LoginController {
     public String initForm(Model model, HttpSession session) throws DataAccessException {
     	User user = (User) session.getAttribute("user");
     	if(user == null) {
-        	model.addAttribute("productList", productService.getProductList());
+        	model.addAttribute("productList", orderItemService.getPopularProducts());
         	model.addAttribute("searchBean", new SearchBean());
     		return "home";
     	}
+    	
     	if(userService.findUserById(user.getId()).getRole().equals(Role.ADMIN)) {
     		return "redirect:/admin/dashboard";
     	}
-    	model.addAttribute("productList", productService.getProductList());
+    	
+    	model.addAttribute("productList", orderItemService.getPopularProducts());
     	model.addAttribute("searchBean", new SearchBean());
 		return "home";
     }

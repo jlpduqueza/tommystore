@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.Random"/>
-<fullyQualifiedTypeName name="org.hibernate.annotations.Formula"/>
-<fullyQualifiedTypeName name="org.hibernate.annotations.ColumnTransformer"/>
 <fullyQualifiedTypeName name="com.tommystore.exceptions.CategoryCreationException"/>
 <fullyQualifiedTypeName name="com.tommystore.domain.InventoryItem"/>
 <fullyQualifiedTypeName name="javax.persistence.Column"/>
@@ -31,21 +28,18 @@
 <fullyQualifiedTypeName name="javax.validation.constraints.Min"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
 <fullyQualifiedTypeName name="javax.persistence.OneToMany"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="javax.persistence.CascadeType"/>
 <fullyQualifiedTypeName name="javax.servlet.annotation.WebFilter"/>
 <fullyQualifiedTypeName name="javax.servlet.Filter"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
-<fullyQualifiedTypeName name="com.tommystore.domain.User"/>
 <fullyQualifiedTypeName name="com.tommystore.constant.Role"/>
 <fullyQualifiedTypeName name="org.hibernate.validator.constraints.NotBlank"/>
 <fullyQualifiedTypeName name="com.tommystore.bean.SearchBean"/>
 <fullyQualifiedTypeName name="javax.validation.Valid"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="com.tommystore.service.InventoryItemService"/>
 <fullyQualifiedTypeName name="com.tommystore.domain.Product"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
@@ -53,11 +47,17 @@
 <fullyQualifiedTypeName name="com.tommystore.domain.OrderItem"/>
 <fullyQualifiedTypeName name="javax.persistence.OneToOne"/>
 <fullyQualifiedTypeName name="com.tommystore.bean.CreditCardBean"/>
-<fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
 <fullyQualifiedTypeName name="com.tommystore.controller.UserController"/>
 <fullyQualifiedTypeName name="org.hibernate.validator.constraints.Email"/>
 <fullyQualifiedTypeName name="com.tommystore.domain.ShippingAddress"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
 <fullyQualifiedTypeName name="com.tommystore.domain.CreditCard"/>
 <fullyQualifiedTypeName name="com.tommystore.constant.Country"/>
+<fullyQualifiedTypeName name="com.tommystore.domain.User"/>
+<fullyQualifiedTypeName name="com.tommystore.domain.Order"/>
+<fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.Map.Entry"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.tommystore.domain.Cart"/>
 </qualifiedTypeNameHistroy>

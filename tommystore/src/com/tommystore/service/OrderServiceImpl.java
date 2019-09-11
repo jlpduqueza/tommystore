@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tommystore.domain.Cart;
 import com.tommystore.domain.Order;
+import com.tommystore.exceptions.InsufficientStockException;
 import com.tommystore.repository.OrderRepository;
 
 @Service
@@ -15,8 +17,8 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	@Transactional
-	public void checkOut(Order order) {
-		orderRepository.checkOut(order);
+	public void checkOut(Order order, Cart cart) throws InsufficientStockException {
+		orderRepository.checkOut(order, cart);
 	}
 	
 }

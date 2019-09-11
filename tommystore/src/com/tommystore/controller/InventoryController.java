@@ -57,9 +57,7 @@ public class InventoryController {
     		return "redirect:add-stock-view/"+inventoryItem.getId();
         }	
         
-        InventoryItem inventoryItemToMerge = inventoryItemService.findInventoryItemById(inventoryItem.getId());
-        inventoryItemToMerge.setQuantity(inventoryItem.getQuantity());
-        inventoryItemService.saveInventoryItem(inventoryItemToMerge, (User) session.getAttribute("user"));
+        inventoryItemService.addStock(inventoryItem, (User) session.getAttribute("user"));
 		return "redirect:dashboard";
     }
 }

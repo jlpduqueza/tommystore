@@ -74,7 +74,7 @@ public class CategoryController {
     	
         if (result.hasErrors()) {
         	Category category = categoryService.findCategoryById(categoryToEdit.getId());
-        	model.addAttribute("category", category);
+        	model.addAttribute("category", category); 
         	return "admin-dashboard-edit-category";
         }
         
@@ -95,11 +95,12 @@ public class CategoryController {
     @RequestMapping(value = "/delete-category", method = RequestMethod.GET)
     public String deleteCategory(Model model, @RequestParam("id") Integer id) {
 
-		if(productService.findProductByCategory(id).size() != 0) {
+		if(productService.findProductByCategory(id).isEmpty()) {
 	    	model.addAttribute("categoryList", categoryService.getCategoryList());
 	    	model.addAttribute("message", deletionErrorMessage);
 			return "admin-dashboard-categorylist";
 		}
+		
     	categoryService.deleteCategory(id);
     	
 		return "redirect:category-list-view";

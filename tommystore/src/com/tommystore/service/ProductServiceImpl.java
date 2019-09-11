@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tommystore.bean.ProductBean;
+import com.tommystore.domain.Category;
 import com.tommystore.domain.Product;
 import com.tommystore.repository.ProductRepository;
 
@@ -15,6 +17,9 @@ public class ProductServiceImpl implements ProductService{
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private CategoryService categoryService;
 	
 	@Override
 	@Transactional
@@ -75,6 +80,17 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<Product> searchProduct(String keyword) {
 		return productRepository.searchProduct(keyword);
+	}
+
+	@Override
+	public Product saveProductByBean(ProductBean productBean) {
+        Product product = new Product();
+        Category category = categoryService.findCategoryById(productBean.getCategory().getId());
+        product.setCategory(category);
+        product.setName(productBean.getName());
+        product.setPrice(new BigDecimal(productBean.getPrice()));
+        
+		return saveProduct(product);
 	}
 
 }

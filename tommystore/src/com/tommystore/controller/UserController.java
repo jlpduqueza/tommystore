@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tommystore.bean.CreditCardBean;
 import com.tommystore.bean.ShippingAddressBean;
-import com.tommystore.domain.CreditCard;
-import com.tommystore.domain.ShippingAddress;
 import com.tommystore.domain.User;
 import com.tommystore.service.CreditCardService;
 import com.tommystore.service.ShippingAddressService;
@@ -54,14 +52,7 @@ public class UserController {
     		return "redirect:add-credit-card-view";
     	}
     	
-    	ShippingAddress shippingAddress = new ShippingAddress();
-    	shippingAddress.setAddress1(shippingAddressBean.getAddress1());
-    	shippingAddress.setAddress2(shippingAddressBean.getAddress2());
-    	shippingAddress.setCountry(shippingAddressBean.getCountry());
-    	shippingAddress.setZipCode(shippingAddressBean.getZipCode());
-    	shippingAddress.setUser((User) session.getAttribute("user"));
-
-    	shippingAddressService.saveShippingAddress(shippingAddress);
+    	shippingAddressService.saveShippingAddressByBean(shippingAddressBean, (User) session.getAttribute("user"));
     	return "redirect:my-account";
     }
     
@@ -80,12 +71,7 @@ public class UserController {
     		return "redirect:add-credit-card-view";
     	}
     	
-    	CreditCard creditCard = new CreditCard();
-    	creditCard.setCardNumber(creditCardBean.getCardNumber());
-    	creditCard.setSecurityCode(creditCardBean.getSecurityCode());
-    	creditCard.setUser((User) session.getAttribute("user"));
-    	
-    	creditCardService.saveCreditCard(creditCard);
+    	creditCardService.saveCreditCardByBean(creditCardBean, (User) session.getAttribute("user"));
     	
     	return "redirect:my-account";
     }
