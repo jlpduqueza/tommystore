@@ -1,0 +1,19 @@
+$message = $('.customMessage');
+$message.hide();
+
+var 
+
+function showMessage(type, message){
+	$message.attr("class", "alert alert-"+type +" customMessage").show().html(message);
+}
+
+var GlobalUtil = {	
+	
+	contextPath: $(document.body).attr("data-context-path"),
+	input: $('input'),
+	test: "test",
+	clearErrorField: function() { 
+    	input.val('');
+    	input.next().remove();
+	}
+}

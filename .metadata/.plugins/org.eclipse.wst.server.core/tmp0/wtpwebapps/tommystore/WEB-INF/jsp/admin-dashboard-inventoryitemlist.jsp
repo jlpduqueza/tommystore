@@ -19,22 +19,54 @@
   <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
  <jsp:include page="/WEB-INF/jsp/side-navbar.jsp" />
-  <body>
+<body data-context-path="${pageContext.request.contextPath}">
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-
-			<div class="row">
-          	<h2>Inventory List</h2>
-				<div class="col-md-4 offset-md-10">
-					<div class="form-group">
-					<form action="stock-history-view">
-	        	      	<button type="submit" class="btn btn-dark">History</button>
-					</form>
-			        </div>
-				</div>
+			
+			<div class="customMessage" style="display:none;" role="alert">
 			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="add-stock" tabindex="-1" role="dialog" aria-labelledby="add-stock" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLongTitle">Add stock</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>     
+	       	 	  <form:form action="add-stock" method="post" modelAttribute="inventoryItem" id="add-stock-form" name="add-stock-form">
+			      <div class="modal-body">
+
+			      </div>
+			      <div class="modal-footer">
+
+			      </div>
+					
+			     
+			  		</form:form>
+			    </div>
+			  </div>
+			</div>
+
+          	<h2>Inventory List</h2>
+			<div class="row">
+       		<c:choose>
+				<c:when test="${errorMessage!=null}">  
+					<div class="alert alert-danger" role="alert">
+				  		<c:out value = "${errorMessage}"/>	
+					</div>
+				</c:when>
+				<c:when test="${successMessage!=null}">  
+					<div class="alert alert-success" role="alert">
+				  		<c:out value = "${successMessage}"/>	
+					</div>
+				</c:when>
+			</c:choose>
+			</div>
+          <p class="tableEmptyMessage" style="display:none;">No inventory item record</p>
           <div class="table-responsive">
-            <table class="table table-striped table-sm">
+            <table class="table table-striped table-sm" id="inventoryItemTable">
               <thead>
                 <tr>
                   <th>Product name</th>
@@ -43,32 +75,21 @@
                 </tr>
               </thead>
               <tbody>
-		         <c:forEach var="inventoryItem" items="${inventoryItemList}">
-			         <tr>
-				         <td><c:out value = "${inventoryItem.product.name}"/></td>
-				         <td><c:out value = "${inventoryItem.quantity}"/></td>
-				         <td>
-					         <a class="btn btn-dark" href="add-stock-view/${inventoryItem.id}" role="button">Add Stock</a>
-				         </td>
-			         </tr>
-		         </c:forEach>
               </tbody>
             </table>
           </div>
         </main>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/resources/jquery-3.2.1.slim.min.js"></script>
+    <script   src="https://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/common.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/lib/underscore.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/inventory-item/inventory-item-list.js"/>"></script>
+ 	<script type="text/javascript" src="<c:url value="/javascript/inventory-item/admin-add-stock.js"/>"></script>
+ 	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="<c:url value="/resources/popper.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap.min.js"/>"></script>
-
-    <!-- Icons -->
     <script src="<c:url value="/resources/feather.min.js"/>"></script>
-    <script>
-      feather.replace()
-    </script>
+    <script src="/resources/javascript/myapp.js"></script>
 
 </body></html>

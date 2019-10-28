@@ -1,0 +1,44 @@
+$(function(e) {
+	var contextPath = $(document.body).attr("data-context-path");
+	
+    $.get({
+       url : contextPath+'/ajax/creditCard',
+       success : function(res) {
+
+			if (res.length == 0) {
+				 $('#creditCardTable').hide();
+				 $('.tableEmptyMessage1').show();
+			}
+			else {
+	           $.each(res,function(key,value){
+		            $('#creditCardTable').append(creditCardRow(value));
+	           });
+			}
+       }
+    , error:function(error){
+    	console.log(error);
+    }
+    
+    })
+    
+    $.get({
+        url : contextPath+'/ajax/shippingAddress',
+        success : function(res) {
+ 			if (res.length == 0) {
+ 				 $('#shippingAddressTable').hide();
+ 				 $('.tableEmptyMessage2').show();
+ 			}
+ 			else {
+	            $.each(res,function(key,value){
+		              $('#shippingAddressTable').append(shippingAddressRow(value));
+	            });
+ 				
+ 			}
+        }
+     , error:function(error){
+     	console.log(error);
+     }
+     
+     })
+    
+});

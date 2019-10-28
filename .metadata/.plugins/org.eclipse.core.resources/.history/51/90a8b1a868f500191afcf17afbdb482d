@@ -1,0 +1,26 @@
+$(function() {
+
+    $.get({
+
+        url: contextPath + '/ajax/user',
+        dataType: "json",
+        success: function(res) {
+        	if (res.length == 0) {
+                $('#userTable').hide();
+                $('.tableEmptyMessage').show();
+            } else {
+            	
+            	var table = $('#userTable');
+            	
+                $.each(res, function(key, value) {
+                    table.append(userRow(value));
+                });
+            }
+        },
+        error: function(error) {
+        	alert("Problem fetching user list");
+        }
+
+    });
+
+});

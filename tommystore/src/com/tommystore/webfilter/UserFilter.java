@@ -22,12 +22,6 @@ public class UserFilter implements Filter {
     public void destroy() {
     }
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;  
@@ -37,10 +31,20 @@ public class UserFilter implements Filter {
 		
 		User user = (User) session.getAttribute("user");
 		
-		if(user == null || !user.getRole().equals(Role.USER)) {
+//		if(user == null || !user.getRole().equals(Role.USER)) {
+//			req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
+//		}
+
+		if(user != null && user.getRole().equals(Role.ADMIN)) {
 			req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
 		}
 		
 		chain.doFilter(req, res);
+	}
+
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		// TODO Auto-generated method stub
+		
 	}
 }

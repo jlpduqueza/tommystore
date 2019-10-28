@@ -19,33 +19,39 @@
   <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
  <jsp:include page="/WEB-INF/jsp/side-navbar.jsp" />
-  <body>
+<body data-context-path="${pageContext.request.contextPath}">
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
 		
 		<div class="container" style="background-color:; max-width:1080px">
 	        <h2>Add stock</h2>       		
-	        <c:choose>
-				<c:when test="${message!=null}">  
+       		<c:choose>
+				<c:when test="${errorMessage!=null}">  
 					<div class="alert alert-danger" role="alert">
-				  		<c:out value = "${message}"/>	
+				  		<c:out value = "${errorMessage}"/>	
+					</div>
+				</c:when>
+				<c:when test="${successMessage!=null}">  
+					<div class="alert alert-success" role="alert">
+				  		<c:out value = "${successMessage}"/>	
 					</div>
 				</c:when>
 			</c:choose>
-	        <form:form action="/tommystore/admin/add-stock" method="post" modelAttribute="inventoryItem">
+	        <form:form action="add-stock" method="post" modelAttribute="inventoryItem">
 			
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-						<c:out value = "${inventoryItem.product.name}"/>
+						<b><c:out value = "${inventoryItem.product.name}"/></b>
+						<br>
+						<c:out value = "Actual quantity: ${inventoryItem.quantity}"/>
 			        </div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
 			        <div class="form-group">
-			        	<label for="role">Stock</label>
-			        	<form:input path="quantity" type="number" class="form-control" name="quantity" placeholder="Quantity" required="required"/>
+			        	<form:input path="quantity" type="number" class="form-control" name="quantity" placeholder="Quantity" required="required" value = "0"/>
 			        	<form:errors path="quantity" cssStyle="color: #ff0000;"/>
 			        </div>
 				</div>
@@ -53,7 +59,7 @@
 	     
 			<div class="form-group">
 				<form:hidden class="form-control" path="id" id="id"/>
-	            <button type="submit" class="btn btn-dark">Save</button>
+	            <button type="submit" class="btn btn-dark">Add</button>
 	        </div>
 	  		</form:form>
         </div>
@@ -62,7 +68,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/resources/jquery-3.2.1.slim.min.js"></script>
+    <script   src="https://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="<c:url value="/resources/popper.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap.min.js"/>"></script>

@@ -1,16 +1,18 @@
 package com.tommystore.repository;
 
+import java.util.Date;
 import java.util.List;
 
+import com.tommystore.domain.Cart;
+import com.tommystore.domain.Order;
 import com.tommystore.domain.OrderItem;
 import com.tommystore.domain.Product;
 
 public interface OrderItemRepository {
 
-	public OrderItem findOrderItemById(Integer id);
-	public OrderItem saveOrderItem(OrderItem orderItem);
-	public List<OrderItem> getOrderItemList();
-	public List<OrderItem> findOrderItemsByProductId(Integer id);
-	public List<Product> getPopularProducts();
+	public List<Product> findPopularProducts(Date range);
+	public List<OrderItem> findOrderItemsProductId(Integer id);
+	
+	public Order checkOut(Order order, Cart cart);
 	
 }

@@ -7,12 +7,16 @@ import com.tommystore.domain.Category;
 
 public interface CategoryService {
 	
-	public Category findCategoryById(Integer id);
-	public Category saveCategory(Category category);
-	public List<Category> getCategoryList();
-	public Boolean isCategoryExistByName(String name);
+	public Category find(Integer id);
+	public Category save(Category category);
+	
+	public List<Category> findCategories();
+	
 	public Map<Integer, String> getCategoryMap();
-	public void deleteCategory(Integer id);
+	
+	public Boolean isCategoryExistByName(String name);
 	public Boolean isValidToEditByIdAndName(Integer id, String name);
+	
+	public void delete(Integer id);
 	
 }

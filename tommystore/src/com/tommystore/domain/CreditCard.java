@@ -1,5 +1,6 @@
 package com.tommystore.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,10 +20,12 @@ public class CreditCard {
 	
 	@NotNull
 	@Size(min = 10, max = 10)
+	@Column(nullable=false)
 	private String cardNumber;
 	
 	@NotNull
 	@Size(min = 5, max = 5)
+	@Column(nullable=false)
 	private String securityCode;
 	
 	@ManyToOne(optional=false)

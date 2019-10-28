@@ -1,0 +1,58 @@
+$(function(e) {
+
+	$("#add-credit-card-form").on('click','.nav-link',function(){
+
+        $('input').val('');
+	    $('input').next().remove();
+	        
+   });
+	
+	var contextPath = $(document.body).attr("data-context-path");
+
+	$message = $('.customMessage');
+	$message.hide();
+	
+	$("#errorMessage1").fadeOut();
+	
+	$('#add-credit-card-form').on('click', 'button[type=submit]', function(e) {
+
+	    e.preventDefault();
+
+	    var modal = $("#add-credit-card");
+  	    
+	    $('input').next().remove();
+	    
+	    $.post({
+	       url : contextPath+'/ajax/add-credit-card',
+	       data : $('form[name="add-credit-card-form"]').serialize(),
+	       success : function(res) {
+	       
+	          if(res.validated){
+		    	  $("#errorMessage").toggle();
+		    	  modal.modal('toggle');
+		    	  
+		          $('input').val('');
+		  	      $('input').next().remove();
+	              $('#creditCardTable').append(creditCardRow(res.data));
+
+	          	  $message.attr("class", "alert alert-success customMessage").show().html(res.customMessage);	
+
+
+	          }else{
+	              $.each(res.errorMessages,function(key,value){
+	            	  $('input[name='+key+']').after('<span class="text-danger">'+value+'</span>');
+	              });
+	              
+		    	  $("#errorMessage").html(res.customMessage);
+		    	  $("#errorMessage").fadeIn();
+
+	          }
+	       }
+	    , error:function(error){
+	    	console.log(error);
+	    }
+	    
+	    })
+	 });
+    
+});

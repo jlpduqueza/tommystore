@@ -1,39 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="ShippingAddress"/>
+		<item key="selection" value="input"/>
 		<item key="wrap" value="true"/>
-		<item key="casesensitive" value="false"/>
+		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="ShippingAddres"/>
-			<item value="someMessage"/>
-			<item value="noCartMessage"/>
-			<item value="side"/>
-			<item value="suff"/>
+			<item value="input"/>
+			<item value="errorMessage"/>
+			<item value="addSuccessMessage"/>
+			<item value=".message"/>
+			<item value="admin"/>
+			<item value="add"/>
+			<item value="add-new-user"/>
+			<item value="search"/>
+			<item value="popular"/>
+			<item value="modal"/>
+			<item value="Save"/>
+			<item value="save"/>
+			<item value="editsave"/>
+			<item value="edit"/>
 			<item value="cart"/>
-			<item value="top-nav"/>
-			<item value="top"/>
-			<item value="filter"/>
-			<item value="servlet"/>
-			<item value="null"/>
-			<item value="Used"/>
-			<item value="Used+"/>
-			<item value="saveadmin"/>
-			<item value="saveuser"/>
 		</list>
 		<list key="replacehistory">
-			<item value="ShippingAddress"/>
-			<item value="ShippingAddres"/>
-			<item value="inventoryItem"/>
-			<item value="InventoryItem"/>
-			<item value="product"/>
-			<item value="Product"/>
-			<item value="type=&quot;text&quot;"/>
+			<item value="edit"/>
+			<item value="orderItem"/>
+			<item value="OrderItem"/>
+			<item value="order"/>
+			<item value="Order"/>
+			<item value="input type=&quot;&quot;"/>
+			<item value="subTotalPrice"/>
+			<item value="inventoryItemService"/>
+			<item value="InventoryItemService"/>
+			<item value="User"/>
+			<item value="user"/>
+			<item value="category"/>
+			<item value="shippingAddress"/>
+			<item value="shipping-address"/>
 			<item value=""/>
-			<item value="login"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

@@ -1,0 +1,39 @@
+$(function() {
+
+	var contextPath = $(document.body).attr("data-context-path");
+
+	$message = $('.customMessage');
+	$message.hide();
+	
+		$('#creditCardTable').on('click', '.delete-credit-card-link', function(e) {
+
+    		$('.deleteSuccessMessage').hide();
+    		$('.deleteFailedMessage').hide();
+		    e.preventDefault(); 
+
+			var $id = $(this).attr("id");
+			var $row = "#tr"+$id;
+
+			 $.get({
+				url : contextPath+'/ajax/delete-credit-card?id='+$id,
+				success : function(res) {
+					
+		        	 $($row).remove();
+		        		$('.deleteSuccessMessage').show();
+		        		$('.deleteSuccessMessage p').html(res.customMessage);
+		        		$('.deleteFailedMessage').hide();
+		        	    $('.addSuccessMessage').hide();
+				}
+				, error:function(error){
+	        		$('.deleteSuccessMessage').show();
+	        		$('.deleteSuccessMessage p').html(res.customMessage);
+	        		$('.deleteFailedMessage').hide();
+	        	    $('.addSuccessMessage').hide();
+					console.log(error);
+				}
+			
+			});
+   });
+
+    
+});

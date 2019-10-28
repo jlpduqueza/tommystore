@@ -4,30 +4,23 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tommystore.bean.LoginBean;
 import com.tommystore.bean.SearchBean;
-import com.tommystore.bean.SignUpBean;
 import com.tommystore.constant.Role;
+import com.tommystore.domain.Cart;
+import com.tommystore.domain.CartItem;
 import com.tommystore.domain.User;
-import com.tommystore.exceptions.DataAccessException;
-import com.tommystore.exceptions.InvalidSavingUserException;
-import com.tommystore.exceptions.UserNotFoundException;
-import com.tommystore.service.OrderItemService;
 import com.tommystore.service.ProductService;
-import com.tommystore.service.UserService;
+import com.tommystore.service.UserService;;
 
 @Controller
-@PropertySource("/WEB-INF/properties")
 public class LoginController {
 
 	@Autowired
@@ -37,103 +30,67 @@ public class LoginController {
 	private ProductService productService;
 	
 	@Autowired
-	private OrderItemService orderItemService;
-	
-	@Value("${invalid.user}")
-	private String errorMessage;
-	
-	@Value("${invalid.emailUsed}")
-	private String emailUsedMessage;
+	private MessageController messageController;
 	
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
+    	
     	model.addAttribute("loginBean", new LoginBean());
+    	
 		return "login";
     }
 	
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String initForm(Model model, HttpSession session) throws DataAccessException {
+    public String home(Model model, HttpSession session)  {
+    	
     	User user = (User) session.getAttribute("user");
+    	
     	if(user == null) {
-        	model.addAttribute("productList", orderItemService.getPopularProducts());
+        	model.addAttribute("searchCriteria", productService.findSearchCriterias());
         	model.addAttribute("searchBean", new SearchBean());
+        	model.addAttribute("cartItem", new CartItem());
+        	
     		return "home";
     	}
     	
-    	if(userService.findUserById(user.getId()).getRole().equals(Role.ADMIN)) {
+    	if(userService.find(user.getId()).getRole().equals(Role.ADMIN)) {
+    		
     		return "redirect:/admin/dashboard";
     	}
-    	
-    	model.addAttribute("productList", orderItemService.getPopularProducts());
+
+    	model.addAttribute("searchCriteria", productService.findSearchCriterias());
     	model.addAttribute("searchBean", new SearchBean());
-		return "home";
-    }
-    
-    @RequestMapping(value = "/search-product", method = RequestMethod.POST)
-    public String productView(@Valid SearchBean searchBean, Model model) {
+    	model.addAttribute("cartItem", new CartItem());
     	
-    	model.addAttribute("productList", productService.searchProduct(searchBean.getKeyword()));
-    	model.addAttribute("searchBean", new SearchBean());
 		return "home";
-    }
-    
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(Model model, HttpSession session) {
-    	session.invalidate();
-		return "redirect:/";
     }
     
     @RequestMapping(value = "/logging-in", method = RequestMethod.POST)
-    public String loggingIn(@Valid LoginBean login, BindingResult result, Model model, HttpSession session, RedirectAttributes attributes) throws UserNotFoundException {
-    	
-        if (result.hasErrors()) {
-        	attributes.addFlashAttribute("message", errorMessage);
-            return "redirect:login";
-        }	
+    public String loggingIn(@Valid LoginBean login, BindingResult result, Model model, HttpSession session, RedirectAttributes attributes) {
         
         User user = userService.validateLogin(login); 
         
-        if(user == null) {
-        	attributes.addFlashAttribute("message", errorMessage);
+        if (result.hasErrors() || user == null) {
+        	attributes.addFlashAttribute("errorMessage", messageController.getInvalidUser());
+        	
             return "redirect:login";
-        }
+        }	
         
     	session.setAttribute("user", user);
+        
+        if(user.getRole().equals(Role.ADMIN)) {
+
+        	return "redirect:/";
+        }
+    	
+    	Cart cart = (Cart) session.getAttribute("cart");
+    	
+    	if(cart != null) {
+    		
+    		return "redirect:/user/checkout-view";
+    	}
+    	
     	return "redirect:/";
         
-    }
-    
-    @RequestMapping(value = "/sign-up", method = RequestMethod.GET)
-    public String signUp(Model model) {
-    	
-    	model.addAttribute("signUpBean", new SignUpBean());
-		return "sign-up";
-    }
-    
-    @RequestMapping(value = "/signing-up", method = RequestMethod.POST)
-    public String signingUp(@Valid SignUpBean signUpBean, BindingResult result, Model model, HttpSession session) throws InvalidSavingUserException {
-    	
-        if(!signUpBean.getConfirmPassword().equals(signUpBean.getPassword())) {
-        	result.rejectValue("confirmPassword", "error.signUpBean", "Those password didn't match.");
-        }
-    	
-        if (result.hasErrors()) {
-            return "sign-up";
-        }
-        
-        if(userService.isUserExistByEmail(signUpBean.getEmail())) {
-        	model.addAttribute("message", emailUsedMessage);
-        	return "sign-up";
-        }
-        
-        userService.saveUserBySignUp(signUpBean);
-		return "redirect:login";
-    }
-    
-    @ExceptionHandler(UserNotFoundException.class)
-    public String UserNotFoundHandler(Exception ex, Model model, RedirectAttributes attributes) {
-        
-    	attributes.addFlashAttribute("message", errorMessage);
-        return "redirect:login";
     }
 }

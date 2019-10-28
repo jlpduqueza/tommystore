@@ -18,18 +18,29 @@
     <link href="<c:url value="/resources/login.css"/>" rel="stylesheet">
   <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
-  <body>
-
+<body data-context-path="${pageContext.request.contextPath}">
+			
+	<div class="alert alert-danger alert-dismissible fade show" style="display:none;" role="alert">
+	  <p id="errorMessage"></p>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
 
 	<div class="login-form">
     	<form:form action="logging-in" method="post" modelAttribute="loginBean">
-			<h2>Login</h2>
-			<c:choose>
-				<c:when test="${message!=null}">  
+			<h2>Loginff</h2>
+       		<c:choose>
+				<c:when test="${errorMessage!=null}">  
 					<div class="alert alert-danger" role="alert">
-				  		<c:out value = "${message}"/>	
+				  		<c:out value = "${errorMessage}"/>	
 					</div>
-			   </c:when>
+				</c:when>
+				<c:when test="${successMessage!=null}">  
+					<div class="alert alert-success" role="alert">
+				  		<c:out value = "${successMessage}"/>	
+					</div>
+				</c:when>
 			</c:choose>
 	        <div class="form-group">
 	        	<form:input path="email" type="text" class="form-control" name="email" placeholder="Email Address" required="required"/>
@@ -41,14 +52,15 @@
 	            <button type="submit" class="btn btn-primary btn-lg">Login</button>
 	        </div>
 	    </form:form>
-		<div class="text-center"> <a href="sign-up">Create an Account</a></div>
+		<div class="text-center"> <a href="sign-up">Crea an Account</a></div>
 	</div>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="/resources/jquery-3.2.1.slim.min.js"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/common.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/lib/underscore.js"/>"></script>
+ 	<script type="text/javascript" src="<c:url value="/javascript/login/loginForm.js"/>"></script>
+ 	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="<c:url value="/resources/popper.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap.min.js"/>"></script>

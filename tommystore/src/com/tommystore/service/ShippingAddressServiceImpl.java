@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tommystore.bean.ShippingAddressBean;
 import com.tommystore.constant.Country;
 import com.tommystore.domain.ShippingAddress;
 import com.tommystore.domain.User;
@@ -21,30 +20,35 @@ public class ShippingAddressServiceImpl implements ShippingAddressService{
 	
 	@Override
 	@Transactional
-	public ShippingAddress findShippingAddressById(Integer id) {
-		return shippingAddressRepository.findShippingAddressById(id);
+	public ShippingAddress find(Integer id) {
+		
+		return shippingAddressRepository.find(id);
 	}
 
 	@Override
 	@Transactional
-	public ShippingAddress saveShippingAddress(ShippingAddress shippingAddress) {
-		return shippingAddressRepository.saveShippingAddress(shippingAddress);
+	public ShippingAddress save(ShippingAddress shippingAddress) {
+		
+		return shippingAddressRepository.save(shippingAddress);
 	}
 
 	@Override
 	@Transactional
-	public List<ShippingAddress> getShippingAddressList() {
-		return shippingAddressRepository.getShippingAddress();
+	public List<ShippingAddress> findShippingAddresses() {
+		
+		return shippingAddressRepository.findShippingAddresses();
 	}
 
 	@Override
 	@Transactional
-	public void deleteShippingAddressById(Integer id) {
-		shippingAddressRepository.deleteShippingAddressById(id);
+	public void delete(Integer id) {
+		
+		shippingAddressRepository.delete(id);
 	}
 
 	@Override
-	public List<Country> getCountryList() {
+	public List<Country> findCountries() {
+		
     	List<Country> countryList = new ArrayList<>();
     	
     	for (Country country : Country.values()) {
@@ -55,16 +59,9 @@ public class ShippingAddressServiceImpl implements ShippingAddressService{
 
 	@Override
 	@Transactional
-	public ShippingAddress saveShippingAddressByBean(ShippingAddressBean shippingAddressBean, User user) {
-    	ShippingAddress shippingAddress = new ShippingAddress();
-    	shippingAddress.setAddress1(shippingAddressBean.getAddress1());
-    	shippingAddress.setAddress2(shippingAddressBean.getAddress2());
-    	shippingAddress.setCountry(shippingAddressBean.getCountry());
-    	shippingAddress.setZipCode(shippingAddressBean.getZipCode());
-    	shippingAddress.setUser(user);
-    	saveShippingAddress(shippingAddress);
-    	
-    	return shippingAddress;
+	public List<ShippingAddress> findShippingAddresses(User user) {
+		
+		return shippingAddressRepository.findShippingAddressesByUser(user);
 	}
 
 }

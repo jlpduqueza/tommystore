@@ -19,74 +19,68 @@
   <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
  <jsp:include page="/WEB-INF/jsp/side-navbar-user.jsp" />
-  <body>
+	<body data-context-path="${pageContext.request.contextPath}">
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+          			
 
-          <h2>Cart </h2>
+		<div class="customMessage" style="display:none;" role="alert">
+		</div>
+		<form:form action="checkout" modelAttribute="orderBean">
+       		<h4>Payment </h4>
+			<div class="form-group creditcard-option">
+				<div class="form-check">
+					<input type="radio" name="creditCard.id" class="form-check-input" id="creditcard0" value="0"/>
+				    <label class="form-check-label " for="creditcard0">
+						Cash On Delivery
+					</label>
+				</div>
+		    </div>
+       		<h4>Shipping Address</h4>
+			<div class="form-group shippingaddress-option">
+		    </div>
+		    <button type="submit" class="btn btn-dark">Checkout</button>
+		</form:form>
           
+          <h2>Cart </h2>
+       		<c:choose>
+				<c:when test="${errorMessage!=null}">  
+					<div class="alert alert-danger" role="alert">
+				  		<c:out value = "${errorMessage}"/>	
+					</div>
+				</c:when>
+				<c:when test="${successMessage!=null}">  
+					<div class="alert alert-success" role="alert">
+				  		<c:out value = "${successMessage}"/>	
+					</div>
+				</c:when>
+			</c:choose>
           <div class="table-responsive">
-            <table class="table table-striped table-sm">
+            <table class="table table-striped table-sm cartItem-table">
               <thead>
                 <tr>
+                  <th>Image</th>
                   <th>Product Name</th>
                   <th>Quantity</th>
                   <th>Price</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-		         <c:forEach var="cartItem" items="${cartItemMap}">
-			         <tr>
-				         <td><c:out value = "${cartItem.value.product.name}"/></td>
-				         <td><c:out value = "${cartItem.value.quantity}"/></td>
-				         <td><c:out value = "${cartItem.value.product.price}"/></td>
-				         <td>
-					         <a class="btn btn-dark" href="edit-product-view?id=${cartItem.value.product.id}" role="button">Edit</a>
-					         <a class="btn btn-dark" href="delete-cartitem?id=${cartItem.value.product.id}" role="button">Delete</a>
-				         </td>
-			         </tr>
-		         </c:forEach>
               </tbody>
             </table>
           </div>
-          <h4>Payment </h4>
-		<div class="form-group">
-			<form:form action="checkout" modelAttribute="order">
-		         <c:forEach var="creditCard" items="${creditCardList}">
-					<div class="form-check">
-					  <form:radiobutton path="creditCard.id" class="form-check-input" name="exampleRadios" id="exampleRadios3" value="${creditCard.id}"/>
-					  <label class="form-check-label" for="exampleRadios3">
-					    <c:out value = "Credit Card: ${creditCard.cardNumber}"/>
-					  </label>
-					</div>
-		         </c:forEach>
-		<div class="form-check">
-		  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-		  <label class="form-check-label" for="exampleRadios1">
-		    Cash On Delivery
-		  </label>
-		</div>
-		  <br>	
-          <h4>Shipping Address</h4>
-		         <c:forEach var="shippingAddress" items="${shippingAddressList}">
-					<div class="form-check">
-					  <form:radiobutton path="shippingAddress.id" class="form-check-input" name="exampleRadios2" id="exampleRadios2" value="${shippingAddress.id}"/>
-					  <label class="form-check-label" for="exampleRadios2">
-					    <c:out value = "Shipping Address: ${shippingAddress.address1}"/>
-					  </label>
-					</div>
-		         </c:forEach>
-				  <br>	
-      	      	<button type="submit" class="btn btn-dark">Checkout</button>
-			</form:form>
-        </div>
+
         </main>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/resources/jquery-3.2.1.slim.min.js"></script>
+    <script   src="https://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/common.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/lib/underscore.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/checkout/checkout.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
+	
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="<c:url value="/resources/popper.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap.min.js"/>"></script>

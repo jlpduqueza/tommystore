@@ -1,0 +1,21 @@
+var contextPath = $(document.body).attr("data-context-path");
+
+$message = $('.customMessage');
+$message.hide();
+
+
+function showMessage(type, message){
+	$message.attr("class", "alert alert-"+type +" customMessage").show().html(message);
+}
+
+var GlobalUtil = {
+		
+	clearErrorField = function(e) { 
+		
+    	input.val('');
+    	input.next().remove();
+	}
+}
+
+	MyGlobals.someVariable = 10;
+	MyGlobals.someFunction(3);

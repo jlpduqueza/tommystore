@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;admin-add-product.js&apos; to &apos;admin-add-product.js&apos;&#x0A;- Original project: &apos;tommystore&apos;&#x0A;- Destination element: &apos;admin-add-product.js&apos;&#x0A;- Original element: &apos;admin-add-product.js&apos;" description="Copy file" element1="WebContent/resources/javascript/product/admin-add-product.js" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1571645836433" target="/tommystore/WebContent/resources/javascript/product/admin-add-product.js" units="0" version="1.0"/>
+</session>

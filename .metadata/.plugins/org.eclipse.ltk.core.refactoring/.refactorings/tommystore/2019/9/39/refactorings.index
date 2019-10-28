@@ -1,0 +1,68 @@
+1569211517899	Rename type 'MessageHelper'
+1569211535792	Move compilation unit
+1569211599170	Rename field 'messageHelper'
+1569211630752	Rename field 'messageHelper'
+1569211650255	Rename field 'messageHelper'
+1569211669444	Rename field 'messageHelper'
+1569211684911	Rename field 'messageHelper'
+1569211697355	Rename field 'messageHelper'
+1569211813581	Rename field 'messageHelper'
+1569222630441	Delete element
+1569223218176	Rename method 'isProductExistByNameAndCategoryId'
+1569231608868	Delete element
+1569231661731	Delete element
+1569231776044	Delete element
+1569231825031	Delete element
+1569231831301	Delete element
+1569231883334	Delete element
+1569231948484	Delete element
+1569232680641	Rename method 'getOrderItemList'
+1569232695639	Rename method 'findOrderItemsByProductId'
+1569232734710	Rename method 'findPopularProducts'
+1569232804490	Rename method 'find'
+1569232855301	Rename method 'findOrderItems'
+1569232900388	Rename method 'deleteProductById'
+1569235258503	Rename method 'isUserExistByEmail'
+1569235295507	Rename method 'findUserByRole'
+1569235447576	Rename method 'findShippingAddressListByUserId'
+1569235511373	Rename method 'findShippingAddressesByUserId'
+1569235734091	Rename method 'generateOrderItemListByCart'
+1569236202334	Rename method 'addStock'
+1569301610607	Rename method 'isValid'
+1569301883318	Delete element
+1569301885454	Delete element
+1569304047052	Rename method 'isExist'
+1569304168958	Rename method 'isExistByNameAndCategory'
+1569304342333	Rename method 'isExistByProductAndCategory'
+1569304410382	Rename method 'isExistByProductAndCategory'
+1569304564949	Rename method 'isExist'
+1569305408386	Rename method 'isExistByPicture'
+1569305535304	Rename method 'isExist'
+1569305647554	Rename method 'isPictureValid'
+1569305702713	Rename method 'isPictureValid'
+1569306833889	Delete element
+1569306846087	Delete element
+1569307039260	Delete element
+1569307111860	Delete element
+1569307625502	Delete element
+1569313540649	Rename local variable 'cart'
+1569321044632	Delete element
+1569474644733	Rename method 'findShippingAddresses'
+1569474664780	Rename method 'findProductByCategory'
+1569474713405	Rename method 'findProducts'
+1569474767740	Rename method 'findProductsByDateRange'
+1569474831534	Rename method 'findInventoryItemByProductId'
+1569474874656	Rename method 'findInventoryItemListByStock'
+1569481300948	Rename method 'findProductByCategory'
+1569490676366	Delete element
+1569492020340	Move folder
+1569565278902	Delete element
+1569565281480	Delete element
+1569565990563	Move file
+1569566597271	Delete element
+1569567416864	Delete element
+1569579136231	Rename local variable 'employee'
+1569579374365	Rename local variable 'loginBean'
+1569579732105	Rename local variable 'respone'
+1569580081706	Copy file
+1569582639489	Copy file

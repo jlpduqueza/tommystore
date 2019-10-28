@@ -15,6 +15,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "category")
@@ -28,6 +29,7 @@ public class Category {
 	private String categoryId;
 
 	@NotNull
+	@NotBlank
 	@Column(nullable=false, unique = true)
 	private String name;
 	

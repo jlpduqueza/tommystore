@@ -1,0 +1,102 @@
+package com.tommystore.bean.json;
+
+import java.util.Date;
+
+import org.springframework.stereotype.Controller;
+
+import com.tommystore.domain.InventoryItem;
+import com.tommystore.domain.Product;
+
+@Controller
+public class InventoryItemBean {
+
+	private Integer id;
+	
+	private String name;
+
+	private String price;
+	
+	private String categoryName;
+	
+	private String quantity;
+	
+	private Date updateDateTime;
+
+	public InventoryItemBean() {
+		
+	}
+	
+	public InventoryItemBean(InventoryItem inventoryItem) {
+		this.id = inventoryItem.getId();
+		this.name = inventoryItem.getProduct().getName();
+		this.price = inventoryItem.getProduct().getPrice().toString();
+		this.categoryName  = inventoryItem.getProduct().getCategory().getName();
+		
+		int quantity = inventoryItem.getQuantity();
+		
+		if(quantity >= 50) {
+			this.quantity = "In Stock";
+		}
+		
+		else if(quantity < 50 && quantity > 0) {
+			this.quantity = "Only "+quantity+" left in stock";
+		}
+		
+		else if(quantity < 1 ) {
+			this.quantity = "No Stock";
+		}
+	
+		this.updateDateTime = inventoryItem.getUpdateDateTime();
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+	
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+
+	public Date getUpdateDateTime() {
+		return updateDateTime;
+	}
+	
+	public void setUpdateDateTime(Date updateDateTime) {
+		this.updateDateTime = updateDateTime;
+	}
+	
+}

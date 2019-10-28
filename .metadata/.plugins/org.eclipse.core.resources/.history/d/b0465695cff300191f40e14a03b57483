@@ -1,0 +1,34 @@
+$(function() {
+
+	var contextPath = $(document.body).attr("data-context-path");
+
+	$('.deleteSuccessMessage').hide();
+	
+		$('.cartItem-table').on('click', '.delete-link', function(e) {
+
+	    e.preventDefault(); 
+	    
+		var $id = $(this).attr("id");
+		var $row = "#tr"+$id;
+
+			 $.get({
+				url : contextPath+'/ajax/delete-cartitem?id='+$id,
+				success : function(res) {
+
+			          if(!res.validated){
+		            	 window.location.href = contextPath+"/user"+res.location;    
+		              }
+
+		     		  $('.deleteSuccessMessage').show().html(res.customMessage);   
+		     		  $('.editSuccessMessage').hide();
+		        	  $($row).remove();
+				}
+				, error:function(error){
+					console.log(error);
+				}
+			
+			});
+   });
+
+    
+});

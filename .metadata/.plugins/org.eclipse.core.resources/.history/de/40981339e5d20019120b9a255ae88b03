@@ -1,9 +1,0 @@
-package com.tommystore.repository;
-
-import com.tommystore.domain.Order;
-
-public interface OrderRepository {
-
-	public void checkOut(Order order);
-	
-}

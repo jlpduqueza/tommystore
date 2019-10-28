@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -27,16 +28,25 @@ public class User {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(unique = true)
+
+	@NotNull
+	@Column(unique = true, nullable = false)
 	private String email;
 	
+	@NotNull
+	@Column(nullable=false)
 	private String password;
 	
+	@NotNull
+	@Column(nullable=false)
 	private String firstName;
 	
+	@NotNull
+	@Column(nullable=false)
 	private String lastName;
 	
+	@NotNull
+	@Column(nullable=false)
 	private String contactNumber;
 	
 	@OneToMany(mappedBy="user")
@@ -45,6 +55,8 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<CreditCard> creditCards;
 	
+	@NotNull
+	@Column(nullable=false)
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	

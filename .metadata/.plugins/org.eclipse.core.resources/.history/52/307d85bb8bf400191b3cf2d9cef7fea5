@@ -1,0 +1,25 @@
+$(function() {
+
+    var contextPath = $(document.body).attr("data-context-path");
+
+    $('.search-list-item').on('click', '#search', function(e) {
+        e.preventDefault();
+
+        $.post({
+            url: contextPath + '/ajax/search',
+            data: $('form[name="searchForm"]').serialize(),
+            success: function(res) {
+                $('.card-container').html("");
+
+                $.each(res, function(key, value) {
+                    $('.card-container').append(productCardTemplate(value));
+                });
+            },
+            error: function(error) {
+                console.log(error);
+            }
+
+        })
+    });
+
+});

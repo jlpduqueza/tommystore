@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import com.tommystore.domain.ShippingAddress;
+import com.tommystore.domain.User;
 
 @Repository
 public class ShippingAddressRepositoryImpl implements ShippingAddressRepository {
@@ -17,29 +18,44 @@ public class ShippingAddressRepositoryImpl implements ShippingAddressRepository 
 	private EntityManager em;
 	
 	@Override
-	public ShippingAddress findShippingAddressById(Integer id) {
+	public ShippingAddress find(Integer id) {
+		
 		return em.find(ShippingAddress.class, id);
 	}
 
 	@Override
-	public ShippingAddress saveShippingAddress(ShippingAddress shippingAddress) {
+	public ShippingAddress save(ShippingAddress shippingAddress) {
+		
         if (shippingAddress.getId() == null) {
 	        em.persist(shippingAddress);
         } else {
             shippingAddress = em.merge(shippingAddress);
         }
+        
         return shippingAddress;
 	}
 
 	@Override
-	public List<ShippingAddress> getShippingAddress() {
+	public List<ShippingAddress> findShippingAddresses() {
+		
 		TypedQuery<ShippingAddress> query =  em.createQuery("From ShippingAddress", ShippingAddress.class);
+		
 		return query.getResultList();
 	}
 
 	@Override
-	public void deleteShippingAddressById(Integer id) {
+	public void delete(Integer id) {
+		
 		em.remove(em.find(ShippingAddress.class, id));
+	}
+
+	@Override
+	public List<ShippingAddress> findShippingAddressesByUser(User user) {
+		
+		TypedQuery<ShippingAddress> query =  em.createQuery("From ShippingAddress where user.id = :id", ShippingAddress.class);
+		query.setParameter("id", user.getId());
+		
+		return query.getResultList();
 	}
 
 }

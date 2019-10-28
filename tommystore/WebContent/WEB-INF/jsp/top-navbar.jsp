@@ -27,7 +27,7 @@
 
 </head>
 
-  <body>
+<body data-context-path="${pageContext.request.contextPath}">
   
   	<c:choose>
        <c:when test="${user==null}">  
@@ -36,7 +36,7 @@
 		     
 		      <ul class="navbar-nav px-3">
 		        <li class="nav-item text-nowrap">
-		          <a class="nav-link" href="login">Login</a>
+		          <a class="nav-link" href="/tommystore/ajax/login">Login</a>
 		        </li>
 		      </ul>
 		    </nav>
@@ -56,15 +56,6 @@
 	     </c:when>
 		</c:choose>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<c:url value="/resources/bootstrap.min.js"/>"></script>
-<!--     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
-    <script src="<c:url value="/resources/popper.min.js"/>"></script>
-
-    <!-- Icons -->
-    <script src="<c:url value="/resources/feather.min.js"/>"></script>
 
    <!--  <script src="/resources/jquery-3.2.1.slim.min.js" ></script> -->
 </body></html>

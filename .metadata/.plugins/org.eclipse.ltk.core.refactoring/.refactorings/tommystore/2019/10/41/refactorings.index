@@ -1,0 +1,56 @@
+1570420995271	Move file
+1570421001928	Move file
+1570421006002	Move file
+1570421009268	Move file
+1570421012177	Move file
+1570421015141	Move file
+1570421018877	Move file
+1570421031179	Move file
+1570421034058	Move file
+1570421037969	Move file
+1570421695332	Delete element
+1570421697392	Delete element
+1570421906698	Rename type 'InventoryBean'
+1570422680541	Rename local variable 'inventoryItemBean'
+1570422763996	Rename field 'category'
+1570424799240	Delete element
+1570425791839	Delete element
+1570427049024	Delete element
+1570427052729	Delete element
+1570427059098	Delete element
+1570427068119	Delete element
+1570427086788	Delete element
+1570427377382	Copy compilation unit
+1570429232246	Rename field 'quantity'
+1570431957895	Rename local variable 'cartItemList'
+1570440435738	Copy file
+1570525182984	Delete element
+1570600910801	Rename type 'CartItemBean'
+1570600918625	Rename type 'CategoryBean'
+1570600925647	Rename type 'ProductBean'
+1570604028605	Copy compilation unit
+1570604040124	Copy compilation unit
+1570604313867	Delete element
+1570604323106	Copy compilation unit
+1570604419087	Rename field 'shippingAddressService'
+1570605978879	Rename field 'creditCardService'
+1570615337070	Copy file
+1570615354010	Copy file
+1570615364129	Copy file
+1570615367759	Delete element
+1570619237921	Copy file
+1570619246184	Copy file
+1570619258436	Copy file
+1570619262218	Delete element
+1570619264593	Delete element
+1570619662195	Copy file
+1570619793117	Rename resource 'delete-credit-card.js'
+1570620155962	Delete element
+1570686080479	Copy compilation unit
+1570687402169	Copy compilation unit
+1570687439258	Delete element
+1570687449057	Copy compilation unit
+1570689423288	Copy compilation unit
+1570689875095	Rename resource 'inventory-item.js'
+1570690417293	Move folder
+1570691272168	Copy file

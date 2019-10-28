@@ -1,0 +1,21 @@
+$(function() {
+
+    var contextPath = $(document.body).attr("data-context-path");
+
+    $.get({
+
+        url: contextPath + '/ajax/category',
+        dataType: "json",
+        success: function(res) {
+            $.each(res, function(key, value) {
+                $('.card-container').append(productCardTemplate(value));
+            });
+        },
+        error: function(error) {
+            console.log(error);
+            alert("There's a problem in fetching categories.");
+        }
+
+    });
+
+});

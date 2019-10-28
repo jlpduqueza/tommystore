@@ -1,26 +1,13 @@
 package com.tommystore.domain;
 
-import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 
 public class CartItem {
 	
-	private Integer id;
-	
-	@ManyToOne(optional=false)
 	private Product product;
 	
+	@Min(1)
 	private int quantity;
-
-	@ManyToOne(optional=false)
-	private User user;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Product getProduct() {
 		return product;
@@ -36,14 +23,6 @@ public class CartItem {
 	
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-
-	public User getUser() {
-		return user;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
 	}
 	
 }

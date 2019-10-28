@@ -1,10 +1,11 @@
 package com.tommystore.domain;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,9 +15,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.tommystore.constant.PaymentType;
 
 @Entity
 @Table(name = "order_table")
@@ -37,14 +40,20 @@ public class Order {
 	private User user;
 	
 	@OneToOne
+	@NotNull
 	private ShippingAddress shippingAddress;
 	
-	@OneToOne
-	private CreditCard creditCard;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private PaymentType paymentType;
 	
-//	@Column(nullable=false, precision=9, scale=2)
-	@Digits(fraction = 2, integer = 7)
-	private BigDecimal totalPrice;
+	public PaymentType getPaymentType() {
+		return paymentType;
+	}
+	
+	public void setPaymentType(PaymentType paymentType) {
+		this.paymentType = paymentType;
+	}
 
 	public Integer getId() {
 		return id;
@@ -60,14 +69,6 @@ public class Order {
 
 	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
-	}
-	
-	public BigDecimal getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(BigDecimal totalPrice) {
-		this.totalPrice = totalPrice;
 	}
 	
 	public Date getPurchaseDate() {
@@ -92,14 +93,6 @@ public class Order {
 
 	public void setShippingAddress(ShippingAddress shippingAddress) {
 		this.shippingAddress = shippingAddress;
-	}
-
-	public CreditCard getCreditCard() {
-		return creditCard;
-	}
-
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
 	}
 	
 }

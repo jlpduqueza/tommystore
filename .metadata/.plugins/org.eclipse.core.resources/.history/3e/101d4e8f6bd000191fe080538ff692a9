@@ -1,5 +1,0 @@
-package com.tommystore.repository;
-
-public class ShippingAddressRepositoryImpl implements ShippingAddressRepository {
-
-}

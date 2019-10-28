@@ -18,19 +18,26 @@
     <link href="<c:url value="/resources/login.css"/>" rel="stylesheet">
   <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
-  <body>
+<body data-context-path="${pageContext.request.contextPath}">
 
 
 	<div class="login-form">
     <form:form action="signing-up" method="post" modelAttribute="signUpBean">
 		<h2>Sign Up</h2>
-		<c:choose>
-			<c:when test="${message!=null}">  
-				<div class="alert alert-danger" role="alert">
-			  		<c:out value = "${message}"/>	
-				</div>
-		   </c:when>
-		</c:choose>
+			<div class="customMessage" style="display:none;" role="alert">
+			</div>
+       		<c:choose>
+				<c:when test="${errorMessage!=null}">  
+					<div class="alert alert-danger" role="alert">
+				  		<c:out value = "${errorMessage}"/>	
+					</div>
+				</c:when>
+				<c:when test="${successMessage!=null}">  
+					<div class="alert alert-success" role="alert">
+				  		<c:out value = "${successMessage}"/>	
+					</div>
+				</c:when>
+			</c:choose>
         <div class="form-group">
         	<form:input path="firstName" type="text" class="form-control" name="First name" placeholder="First name" required="required"/>
         	<form:errors path="firstName" cssStyle="color: #ff0000;"/>
@@ -58,11 +65,9 @@
 		<div class="form-group">
             <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
         </div>
-    </form:form>
-		<div class="text-center"> <a href="sign-up">Create an Account</a></div>
-	</div>
 
-
+		</form:form>
+        </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

@@ -19,12 +19,14 @@ public class InventoryRepositoryImpl implements InventoryRepository {
 	private EntityManager em;
 	
 	@Override
-	public InventoryItem findInventoryItemById(Integer id) {
+	public InventoryItem find(Integer id) {
+		
 		return em.find(InventoryItem.class, id);
 	}
 
 	@Override
-	public InventoryItem saveInventoryItem(InventoryItem inventoryItem, User user) {
+	public InventoryItem save(InventoryItem inventoryItem, User user) {
+		
         if (inventoryItem.getId() == null) {
 	        em.persist(inventoryItem);
         } else {
@@ -36,32 +38,42 @@ public class InventoryRepositoryImpl implements InventoryRepository {
             stockHistory.setUpdatedQuantity(inventoryItem.getQuantity());
             em.persist(stockHistory);
         }
+        
         return inventoryItem;
 	}
 
 	@Override
-	public List<InventoryItem> getInventoryItemList() {
+	public List<InventoryItem> findInventoryItems() {
+		
 		TypedQuery<InventoryItem> query =  em.createQuery("From InventoryItem", InventoryItem.class);
+		
 		return query.getResultList();
 	}
 
 	@Override
-	public List<InventoryItem> findInventoryItemListByStock(int stock) {
+	public List<InventoryItem> findByStock(int stock) {
+		
 		TypedQuery<InventoryItem> query =  em.createQuery("From InventoryItem where quantity <= :nStock", InventoryItem.class);
 		query.setParameter("nStock", stock);
+		
 		return query.getResultList();
 	}
 
 	@Override
-	public InventoryItem findInventoryItemByProductId(Integer id) {
+	public InventoryItem findByProductId(Integer id) {
+		
 		TypedQuery<InventoryItem> query =  em.createQuery("From InventoryItem where product.id = :id", InventoryItem.class);
 		query.setParameter("id", id);
+		
 		return query.getSingleResult();
 	}
 
 	@Override
-	public List<StockHistory> getStockHistoryList() {
-		TypedQuery<StockHistory> query =  em.createQuery("From StockHistory", StockHistory.class);
+	public List<StockHistory> findStockHistories(Integer id) {
+		
+		TypedQuery<StockHistory> query =  em.createQuery("From StockHistory where inventoryItem.id = :id", StockHistory.class);
+		query.setParameter("id", id);
+		
 		return query.getResultList();
 	}
 

@@ -28,7 +28,7 @@ public class OrderItem {
 	@ManyToOne(optional=false)
 	private Order order;
 
-	@NotNull
+	@Column(nullable=false)
 	private int quantity;
 	
 	@NotNull

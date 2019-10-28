@@ -1,0 +1,32 @@
+$(function() {
+   /*  Submit form using Ajax */
+   $('button[type=submit]').click(function(e) {
+   
+	  var contextPath = $(document.body).attr("data-context-path");
+	   
+      //Prevent default submission of form
+      e.preventDefault();
+      
+      //Remove all errors
+      $('input').next().remove();
+      
+      $.post({
+         url : contextPath+'/ajax/loggingInTest',
+         data : $('form[name=loginForm]').serialize(),
+         success : function(res) {
+         
+            if(res.validated){
+               //Set response
+            	window.location.href = res.location;
+            
+            }else{
+              //Set error messages
+	              $.each(res.errorMessages,function(key,value){
+	            	  $('input[name='+key+']').after('<span class="text-danger">'+value+'</span>');
+	              });
+            	$("#errorMessage").html(res.customMessage);
+            }
+         }
+      })
+   });
+});

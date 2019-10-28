@@ -1,0 +1,33 @@
+$(function() {
+	$('.btn btn-dark').click(function(e) {
+		   
+	    e.preventDefault();
+  	    
+	    var id = $(this).attr("data-id");
+	    
+	    alert(id);
+	    
+	    $.get({
+	       url : 'delete-category?id='+id,
+	       success : function(res) {
+	    	   
+	    	   console.log("getting here");
+	    	   
+	          if(res.validated){
+	              $('#categoryRow').remove
+	          
+	          }else{
+	        	  alert(res.customMessage);
+//	              $.each(res.errorMessages,function(key,value){
+//	    	            $('input[name='+key+']').after('<span class="error">'+value+'</span>');
+//	                });
+	          }
+	       }
+	    , error:function(error){
+	    	console.log(error);
+	    }
+	    
+	    })
+	 });
+    
+});

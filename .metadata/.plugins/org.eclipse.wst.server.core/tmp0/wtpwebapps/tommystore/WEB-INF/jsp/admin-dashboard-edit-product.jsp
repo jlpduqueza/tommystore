@@ -19,48 +19,63 @@
   <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
  <jsp:include page="/WEB-INF/jsp/side-navbar.jsp" />
-  <body>
+<body data-context-path="${pageContext.request.contextPath}">
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
 		
 		<div class="container" style="background-color:; max-width:1080px">
 	        <h2>Edit Product</h2>       		
-	        <c:choose>
-				<c:when test="${message!=null}">  
+       		<c:choose>
+				<c:when test="${errorMessage!=null}">  
 					<div class="alert alert-danger" role="alert">
-				  		<c:out value = "${message}"/>	
+				  		<c:out value = "${errorMessage}"/>	
+					</div>
+				</c:when>
+				<c:when test="${successMessage!=null}">  
+					<div class="alert alert-success" role="alert">
+				  		<c:out value = "${successMessage}"/>	
 					</div>
 				</c:when>
 			</c:choose>
-	        <form:form action="edit-product" method="post" modelAttribute="product">
+	        <form:form action="edit-product" method="post" modelAttribute="productBean" enctype="multipart/form-data">
+			
 			
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-3">
+					<div class="card mb-3 mx-2" style="width: 10rem;">
+					  <img src="/tommystore/images/${product.picturePath}" class="card-img-top" alt="...">
+					  <div class="card-body">
+					  </div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<form:label path="picture">Upload product photo</form:label>
+						<br>
+			            <input type="file" name="picture" src="/tommystore/images/${product.picturePath}" alt="Submit" width="48" height="48">
+   			        	<form:errors path="picture" cssStyle="color: #ff0000;"/>
+			        </div>
 					<div class="form-group">
 						<label for="role">Name</label>
 			        	<form:input path="name" type="text" class="form-control" name="name" placeholder="name" required="required" value="${product.name}"/>
 			        	<form:errors path="name" cssStyle="color: #ff0000;"/>
 			        </div>
-				</div>
-				<div class="col-md-4">
 					<div class="form-group">
 						<label for="role">Price</label>
 			        	<form:input path="price" type="text" class="form-control" name="price" placeholder="price" required="required" value="${product.price}"/>
 			        	<form:errors path="price" cssStyle="color: #ff0000;"/>
 			        </div>
-				</div>
-				<div class="col-md-4">
 					<div class="form-group">
 						<label for="role">Category</label>
-	        	      	<form:select path="category.id" items="${categoryMap}" value="${product.category.name}"/>
+	        	      	<form:select class="form control" path="category.id" items="${categoryMap}"/>
     				    <form:errors path="category.id" cssStyle="color: #ff0000;"/>
+			        </div>
+					<div class="form-group">
+						<form:hidden path="id" value="${product.id}"/>
+			            <button type="submit" class="btn btn-dark">Save</button>
 			        </div>
 				</div>
 			</div>
-			<div class="form-group">
-				<form:hidden path="id" value="${product.id}"/>
-	            <button type="submit" class="btn btn-dark">Save</button>
-	        </div>
 	  		</form:form>
         </div>
         </main>

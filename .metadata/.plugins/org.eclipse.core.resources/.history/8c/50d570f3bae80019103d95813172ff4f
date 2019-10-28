@@ -1,0 +1,76 @@
+package com.tommystore.bean.json;
+
+import java.util.Date;
+
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.stereotype.Controller;
+
+import com.tommystore.domain.Category;
+import com.tommystore.domain.Product;
+
+@Controller
+public class InventoryItemBean {
+
+	private Integer id;
+	
+	private Product product;
+
+	private int quantity;
+	
+	private Date updateDateTime;
+
+	
+	public InventoryItemBean() {
+		
+	}
+	
+	public InventoryItemBean(Category category) {
+		this.id = category.getId();
+		this.name = category.getName();
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	
+	public Product getProduct() {
+		return product;
+	}
+
+	
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	
+	public Date getUpdateDateTime() {
+		return updateDateTime;
+	}
+
+	
+	public void setUpdateDateTime(Date updateDateTime) {
+		this.updateDateTime = updateDateTime;
+	}
+	
+}

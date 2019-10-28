@@ -1,0 +1,115 @@
+package com.tommystore.bean.json;
+
+import java.util.Date;
+
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.stereotype.Controller;
+
+import com.tommystore.domain.Category;
+import com.tommystore.domain.Product;
+
+@Controller
+public class InventoryItemBean {
+
+	private Integer id;
+	
+	private Product name;
+
+	private Product price;
+	
+	private Product category;
+	
+	private String quantity;
+	
+	private Date updateDateTime;
+
+	
+	public InventoryItemBean() {
+		
+	}
+	
+	public InventoryItemBean(InventoryItemBean inventoryItemBean) {
+		this.id = inventoryItemBean.getId();
+		this.product = inventoryItemBean.getProduct();
+		
+		int quantity = inventoryItemBean.getQuantity();
+		
+		if(quantity >= 50) {
+			this.quantity = "In Stock";
+		}
+		
+		else if(quantity < 50 && quantity > 0) {
+			this.quantity = "Only "+quantity+" left in stock";
+		}
+		
+		else if(quantity < 1 ) {
+			this.quantity = "No Stock";
+		}
+	
+		this.updateDateTime = inventoryItemBean.getUpdateDateTime();
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	
+	public Product getName() {
+		return name;
+	}
+
+	
+	public void setName(Product name) {
+		this.name = name;
+	}
+
+	
+	public Product getPrice() {
+		return price;
+	}
+
+	
+	public void setPrice(Product price) {
+		this.price = price;
+	}
+
+	
+	public Product getCategory() {
+		return category;
+	}
+
+	
+	public void setCategory(Product category) {
+		this.category = category;
+	}
+
+	
+	public String getQuantity() {
+		return quantity;
+	}
+
+	
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+
+	public Date getUpdateDateTime() {
+		return updateDateTime;
+	}
+
+	
+	public void setUpdateDateTime(Date updateDateTime) {
+		this.updateDateTime = updateDateTime;
+	}
+	
+}

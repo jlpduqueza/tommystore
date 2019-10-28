@@ -19,48 +19,53 @@
   <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
  <jsp:include page="/WEB-INF/jsp/side-navbar.jsp" />
-  <body>
+<body data-context-path="${pageContext.request.contextPath}">
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-
-          <h2>Stock History</h2>
-			<div class="row">
-				<div class="col-md-4 offset-md-10">
-					<div class="form-group">
-					<form action="stock-history-view">
-	        	      	<button type="submit" class="btn btn-dark">History</button>
-					</form>
-			        </div>
-				</div>
+			
+			<div class="customMessage" style="display:none;" role="alert">
 			</div>
-          <div class="table-responsive">
-            <table class="table table-striped table-sm">
-              <thead>
-                <tr>
-                  <th>Product name</th>
-                  <th>Quantity</th>
-                  <th>Modified By</th>
-                  <th>Date Updated</th>
-                </tr>
-              </thead>
-              <tbody>
-		         <c:forEach var="stockHistory" items="${stockHistoryList}">
-			         <tr>
-				         <td><c:out value = "${stockHistory.inventoryItem.product.name}"/></td>
-				         <td><c:out value = "${stockHistory.updatedQuantity}"/></td>
-				         <td><c:out value = "${stockHistory.user.firstName}"/></td>
-				         <td><c:out value = "${stockHistory.inventoryItem.updateDateTime}"/></td>
-			         </tr>
-		         </c:forEach>
-              </tbody>
-            </table>
-          </div>
+          <h2>Stock History</h2>
+       		<c:choose>
+				<c:when test="${errorMessage!=null}">  
+					<div class="alert alert-danger" role="alert">
+				  		<c:out value = "${errorMessage}"/>	
+					</div>
+				</c:when>
+				<c:when test="${successMessage!=null}">  
+					<div class="alert alert-success" role="alert">
+				  		<c:out value = "${successMessage}"/>	
+					</div>
+				</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${empty stockHistoryList}">  
+					<b>No stock history found in this product</b>
+				</c:when>
+				<c:when test="${!empty stockHistoryList}">  
+		          <div class="table-responsive">
+		            <table class="table table-striped table-sm stockHistoryTable">
+		              <thead>
+		                <tr>
+		                  <th>Product name</th>
+		                  <th>Quantity</th>
+		                  <th>Modified By</th>
+		                  <th>Date Updated</th>
+		                </tr>
+		              </thead>
+		              <tbody>
+		              </tbody>
+		            </table>
+		          </div>
+				</c:when>
+			</c:choose>  
         </main>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/resources/jquery-3.2.1.slim.min.js"></script>
+    <script   src="https://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/common.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/lib/underscore.js"/>"></script>
+ 	<script type="text/javascript" src="<c:url value="/javascript/inventory-item/admin-stockhistory-list.js"/>"></script>
+ 	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="<c:url value="/resources/popper.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap.min.js"/>"></script>

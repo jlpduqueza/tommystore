@@ -1,8 +1,0 @@
-package com.tommystore.repository;
-
-import org.hibernate.SharedSessionBuilder;
-
-
-public class ShippingAddressRepositoryImpl implements ShippingAddressRepository, SharedSessionBuilder<T> {
-
-}

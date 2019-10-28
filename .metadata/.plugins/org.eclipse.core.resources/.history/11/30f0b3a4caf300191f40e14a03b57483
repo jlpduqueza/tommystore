@@ -1,0 +1,38 @@
+$(function() {
+
+	var contextPath = $(document.body).attr("data-context-path");
+
+	$message = $('.customMessage');
+	$message.hide();
+	
+		$('#shippingAddressTable').on('click', '.delete-shipping-address-link', function(e) {
+
+		    e.preventDefault(); 
+
+			var $id = $(this).attr("id");
+			var $row = "#tr"+$id;
+
+			 $.get({
+				url : contextPath+'/ajax/delete-shipping-address?id='+$id,
+				success : function(res) {
+					
+		        	 $($row).remove();
+		        		$('.deleteSuccessMessage').show();
+		        		$('.deleteSuccessMessage p').html(res.customMessage);
+		        		$('.deleteFailedMessage').hide();
+		        	    $('.addSuccessMessage').hide();
+				}
+				, error:function(error){
+
+	        		$('.deleteFailedMessage').show();
+	        		$('.deleteFailedMessage p').html(res.customMessage);
+	        		$('.deleteSuccessMessage').hide();
+	        	    $('.addSuccessMessage').hide();
+					console.log(error);
+				}
+			
+			});
+   });
+
+    
+});

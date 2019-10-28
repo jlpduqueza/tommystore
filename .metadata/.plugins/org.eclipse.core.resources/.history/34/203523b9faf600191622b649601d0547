@@ -1,0 +1,20 @@
+
+var test = "test";
+var contextPath = $(document.body).attr("data-context-path");
+
+var GlobalUtil = {
+	
+	test: "test",
+	clearErrorField: function() { 
+		var input = $('input');
+    	input.val('');
+    	input.next().remove();
+	},
+	showMessage: function(type, message){
+		$message.attr("class", "alert alert-"+type +" customMessage").show().html(message);
+	},
+	clearMessages: function(){
+		$message.hide();
+	}
+	
+}

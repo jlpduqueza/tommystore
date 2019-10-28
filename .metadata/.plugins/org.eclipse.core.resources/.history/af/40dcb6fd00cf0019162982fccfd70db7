@@ -1,8 +1,0 @@
-package com.tommystore.service;
-
-import com.tommystore.domain.CartItem;
-
-public interface CartItemService {
-
-	public CartItem addToCart();
-}

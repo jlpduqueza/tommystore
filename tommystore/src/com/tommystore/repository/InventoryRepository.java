@@ -8,11 +8,12 @@ import com.tommystore.domain.User;
 
 public interface InventoryRepository {
 
-	public InventoryItem findInventoryItemById(Integer id);
-	public InventoryItem findInventoryItemByProductId(Integer id);
-	public InventoryItem saveInventoryItem(InventoryItem inventoryItem, User user);
-	public List<InventoryItem> getInventoryItemList();
-	public List<StockHistory> getStockHistoryList();
-	public List<InventoryItem> findInventoryItemListByStock(int stock);
+	public InventoryItem find(Integer id);
+	public InventoryItem findByProductId(Integer id);
+	public InventoryItem save(InventoryItem inventoryItem, User user);
+	
+	public List<InventoryItem> findInventoryItems();
+	public List<StockHistory> findStockHistories(Integer id);
+	public List<InventoryItem> findByStock(int stock);
 	
 }

@@ -1,0 +1,17 @@
+//var 
+
+$message = $('.customMessage');
+$message.hide();
+
+
+function showMessage(type, message){
+	$message.attr("class", "alert alert-"+type +" customMessage").show().html(message);
+}
+
+var GlobalUtil = {
+
+	input: $('input');
+}
+	
+	MyGlobals.someVariable = 10;
+	MyGlobals.someFunction(3);

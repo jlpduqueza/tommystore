@@ -1,0 +1,47 @@
+$(function() {
+
+    var contextPath = $(document.body).attr("data-context-path");
+
+    $.get({
+
+        url: contextPath + '/ajax/cart',
+        success: function(res) {
+            $.each(res, function(key, value) {
+                $('.cartItem-table').append(cartRow(value));
+            });
+        },
+        error: function(error) {
+            console.log(error);
+        }
+
+    });
+
+    $.get({
+        url: contextPath + '/ajax/creditCard',
+        success: function(res) {
+
+            $.each(res, function(key, value) {
+                $('.creditcard-option').append(creditCards(value));
+            });
+        },
+        error: function(error) {
+            console.log(error);
+        }
+
+    })
+
+    $.get({
+        url: contextPath + '/ajax/shippingAddress',
+        dataType: "json",
+        success: function(res) {
+            $.each(res, function(key, value) {
+                $('.shippingaddress-option').append(shippingAddresses(value));
+            });
+        },
+        error: function(error) {
+            console.log(error);
+        }
+
+    })
+
+});

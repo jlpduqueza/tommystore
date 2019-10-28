@@ -29,6 +29,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotNull
+	@Column(nullable=false)
 	private String productId;
 
 	@NotNull
@@ -54,6 +56,8 @@ public class Product {
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDateTime;
+	
+	private String picturePath;
 
 	public InventoryItem getInventoryItem() {
 		return inventoryItem;
@@ -117,6 +121,14 @@ public class Product {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+
+	public String getPicturePath() {
+		return picturePath;
+	}
+
+	public void setPicturePath(String picturePath) {
+		this.picturePath = picturePath;
 	}
 
 }

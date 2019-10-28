@@ -1,0 +1,45 @@
+$(function() {
+	
+	var contextPath = $(document.body).attr("data-context-path");
+	
+    $.get({
+        url : contextPath+'/ajax/new-user',
+        success : function(res) {
+			 if (res.length == 0) {
+				 $('#userTable').hide();
+				 $('.tableEmptyMessage').show();
+			 }
+			 else {
+	            $.each(res,function(key,value){
+	 	            $('#userTable').append(dashboardUserRow(value));
+	            });
+				 
+			 }
+
+        }
+     , error:function(error){
+     	console.log(error);
+     }
+     
+     })
+     
+     $.get({
+         url : contextPath+'/ajax/inventory-item/low-stock',
+         success : function(res) {
+			 if (res.length == 0) {
+				 $('#inventoryItemTable').hide();
+				 $('.tableEmptyMessage').show();
+			 }
+			 else {
+	             $.each(res,function(key,value){
+	 	              $('#inventoryItemTable').append(dashboardProductRow(value));
+	             });
+			 }
+         }
+      , error:function(error){
+      	console.log(error);
+      }
+      
+     })
+	
+});

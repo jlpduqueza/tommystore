@@ -18,7 +18,9 @@ http://www.springframework.org/schema/tx/spring-tx.xsd
   </context:component-scan>
   <context:property-placeholder location="/WEB-INF/properties"/>
      
+  <mvc:resources mapping="/javascript/**" location="/resources/javascript/" />
   <mvc:resources mapping="/resources/**" location="/resources/dashboard-theme/" />
+  <mvc:resources mapping="/images/**" location="file:/home/training-lee/Desktop/images/" />
   <mvc:annotation-driven />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -49,6 +51,8 @@ http://www.springframework.org/schema/tx/spring-tx.xsd
 	        </props>
 	    </property>
 	</bean>
+   	<bean id = "multipartResolver"
+      class = "org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 	    <property name="entityManagerFactory" ref="myEmf" />
 	</bean>

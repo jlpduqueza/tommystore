@@ -1,0 +1,74 @@
+$(function(e) {
+
+	$("#add-stock-form").on('click','.nav-link',function(){
+
+//        $('input').val('');
+//	    $('input').next().remove();
+	        
+   });
+	
+	var contextPath = $(document.body).attr("data-context-path");
+
+	$message = $('.customMessage');
+	$message.hide();
+	
+	$('#inventoryItemTable').on('click', '.modal-add-stock', function(e) {
+		var $id = $(this).attr("data-id");
+		
+			 $.get({
+				url : contextPath+'/ajax/inventory-item/edit?id='+$id,
+				success : function(res) {
+
+					$(".modal-body").html(addStockModalBody(res));
+					$(".modal-footer").html(addStockModalFoot(res));
+		        	$("#id").attr('value',res.id);
+		        	 
+		     		$("#errorMessage").fadeOut();
+		        	 
+				}
+				, error:function(error){
+					console.log(error);
+				}
+			
+			});
+   });
+	
+	$('#add-stock-form').on('click', 'button[type=submit]', function(e) {
+
+	    e.preventDefault();
+
+        $('.addSuccessMessage').hide();
+	    
+	    var modal = $("#add-stock");
+	    
+	    $.post({
+	       url : contextPath+'/ajax/inventory-item/add-stock',
+	       data : $('form[name="add-stock-form"]').serialize(),
+	       success : function(res) {
+	       
+	          if(res.validated){
+		    	  $("#errorMessage").toggle();
+		    	  modal.modal('toggle');
+	              $('#td'+res.data.id).html(res.data.quantity);
+
+	              $('.addSuccessMessage').show();
+	              $('.addSuccessMessage p').html(res.customMessage);
+
+	          }else{
+	              $.each(res.errorMessages,function(key,value){
+	            	  $('input[name='+key+']').after('<span class="text-danger">'+value+'</span>');
+	              });
+	              $('#customMessage').show().html(res.customMessage);
+		    	  $("#errorMessage").html(res.customMessage);
+		    	  $("#errorMessage").fadeIn();
+
+	          }
+	       }
+	    , error:function(error){
+	    	console.log(error);
+	    }
+	    
+	    })
+	 });
+    
+});

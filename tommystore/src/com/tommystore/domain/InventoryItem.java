@@ -3,7 +3,6 @@ package com.tommystore.domain;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +13,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -29,8 +27,6 @@ public class InventoryItem {
 	@OneToOne(optional=false)
 	private Product product;
 
-	@NotNull
-	@Column(nullable=false)
 	@Min(0)
 	private int quantity;
 	
