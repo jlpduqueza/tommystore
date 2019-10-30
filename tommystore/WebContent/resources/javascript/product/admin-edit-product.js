@@ -3,6 +3,7 @@
 	"use strict";
 
 	var errorMessage = $("#errorMessage");
+	var mySelect;
 	
 	errorMessage.toggle();
 	input.next().remove();
@@ -12,15 +13,37 @@
 
     });
 
-    $(".edit-product-td").on('click', '.edit-product-link', function() {
+    $("#productTable").on('click', '.edit-product-link', function(e) {
+    	
+        e.preventDefault();
+        
         input.val('');
         input.next().remove();
+        
+        var $id = $(this).attr("data-id");
 
+        $.get({
+            url: contextPath + '/ajax/product/editView?id=' + $id,
+            dataType: "json",
+            success: function(res) {
+            	mySelect = res.categoryId;
+
+                alert(mySelect);
+                $("#edit-body").html(editProductInput(res));
+                $("#id").attr('value', res.id);
+                errorMessage.fadeOut();
+            },
+            error: function(error) {
+                console.log(error);
+                alert("There's a problem editing a product.");
+            }
+
+        });
+        
         $.get({
             url: contextPath + '/ajax/category',
             dataType: "json",
             success: function(res) {
-                $('.product-input').html(addProductInput());
 
                 var categorySelect = $('.category-select');
                 
@@ -28,6 +51,9 @@
                 	categorySelect.append('<option value=' + value.id + '>' + value.name + '</option>');
                 	categorySelect.attr("id", value.id);
                 });
+                
+                categorySelect.val(mySelect);
+                
             },
             error: function(error) {
                 console.log(error);
@@ -36,25 +62,6 @@
 
 
         })
-        
-        var $id = $(this).attr("data-id");
-
-        $.get({
-            url: contextPath + '/ajax/product/editView?id=' + $id,
-            dataType: "json",
-            success: function(res) {
-
-                $(".modal-body").html(editProductInput(res));
-                $("#id").attr('value', res.id);
-                errorMessage.fadeOut();
-
-            },
-            error: function(error) {
-                console.log(error);
-                alert("There's a problem editing a product.");
-            }
-
-        });
     });
 
     errorMessage.fadeOut();
@@ -62,6 +69,7 @@
     $('#editProduct').on('click', 'button[type=submit]', function(e) {
 
         e.preventDefault();
+        
         $('.editSuccessMessage').hide();
 
         var modal = $("#editProduct");

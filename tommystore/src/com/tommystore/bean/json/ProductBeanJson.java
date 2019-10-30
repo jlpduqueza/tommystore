@@ -12,6 +12,8 @@ public class ProductBeanJson {
 	
 	private BigDecimal price;
 	
+	private int categoryId;
+	
 	private String category;
 	
 	private String quantity;
@@ -26,6 +28,7 @@ public class ProductBeanJson {
 		this.id = product.getId();
 		this.name = product.getName();
 		this.price = product.getPrice();
+		this.categoryId = product.getCategory().getId();
 		this.category = product.getCategory().getName();
 		this.picturePath = product.getPicturePath();		
 		
@@ -68,10 +71,18 @@ public class ProductBeanJson {
 		this.price = price;
 	}
 
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	public String getCategory() {
 		return category;
 	}
-
+	
 	public void setCategory(String category) {
 		this.category = category;
 	}

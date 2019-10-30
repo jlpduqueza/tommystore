@@ -61,9 +61,9 @@
 			        </button>
 			      </div>     
 	       	 	  <form:form action="edit-product" method="post" modelAttribute="product"  id="edit_form" name="edit-product-form" enctype="multipart/form-data">
-			      <div class="modal-body">
+			      <div class="modal-body" id="edit-body">
 <!-- 					<div class="alert alert-danger" role="alert" id="errorMessage"></div> -->
-						<div class="form-group product-input">
+						<div class="form-group edit-product-input">
 						
 				        </div>
 			      </div>
@@ -109,14 +109,13 @@
         </main>
 
     <script   src="https://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
-	<script type="text/javascript" src="<c:url value="/javascript/common.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/javascript/lib/underscore.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/common.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/javascript/product/admin-product-list.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/javascript/product/admin-add-product.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/javascript/product/admin-edit-product.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/javascript/product/admin-delete-product.js"/>"></script>
- 	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="<c:url value="/resources/popper.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap.min.js"/>"></script>
     <script src="<c:url value="/resources/feather.min.js"/>"></script>

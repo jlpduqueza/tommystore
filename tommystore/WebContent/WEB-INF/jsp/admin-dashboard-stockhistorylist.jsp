@@ -38,11 +38,7 @@
 					</div>
 				</c:when>
 			</c:choose>
-			<c:choose>
-				<c:when test="${empty stockHistoryList}">  
-					<b>No stock history found in this product</b>
-				</c:when>
-				<c:when test="${!empty stockHistoryList}">  
+
 		          <div class="table-responsive">
 		            <table class="table table-striped table-sm stockHistoryTable">
 		              <thead>
@@ -57,16 +53,13 @@
 		              </tbody>
 		            </table>
 		          </div>
-				</c:when>
-			</c:choose>  
         </main>
 
     <script   src="https://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
-	<script type="text/javascript" src="<c:url value="/javascript/common.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/javascript/lib/underscore.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/common.js"/>"></script>
  	<script type="text/javascript" src="<c:url value="/javascript/inventory-item/admin-stockhistory-list.js"/>"></script>
- 	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="<c:url value="/resources/popper.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap.min.js"/>"></script>
 

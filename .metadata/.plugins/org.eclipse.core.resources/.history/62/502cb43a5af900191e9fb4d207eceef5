@@ -1,0 +1,120 @@
+(function() {
+
+	"use strict";
+
+	var errorMessage = $("#errorMessage");
+	
+	errorMessage.toggle();
+	input.next().remove();
+    $(".edit-new-category").on('click', '.nav-link', function() {
+
+        GlobalUtil.clearErrorField();
+
+    });
+
+    $("#productTable").on('click', '.edit-product-link', function(e) {
+    	
+        e.preventDefault();
+        
+        input.val('');
+        input.next().remove();
+    	alert("test1");
+
+        
+        var $id = $(this).attr("data-id");
+
+        $.get({
+            url: contextPath + '/ajax/product/editView?id=' + $id,
+            dataType: "json",
+            success: function(res) {
+            	
+            	alert(res.name + res.price+res.category);            	
+                $("#edit-body").html(editProductInput(res));
+                $("#id").attr('value', res.id);
+                errorMessage.fadeOut();
+
+            },
+            error: function(error) {
+                console.log(error);
+                alert("There's a problem editing a product.");
+            }
+
+        });
+        
+        $.get({
+            url: contextPath + '/ajax/category',
+            dataType: "json",
+            success: function(res) {
+
+                var categorySelect = $('.category-select');
+                
+                $.each(res, function(key, value) {
+                	categorySelect.append('<option value=' + value.id + '>' + value.name + '</option>');
+                	categorySelect.attr("id", value.id);
+                });
+            },
+            error: function(error) {
+                console.log(error);
+                alert("There's a problem editing a product.");
+            }
+
+
+        })
+    });
+
+    errorMessage.fadeOut();
+
+    $('#editProduct').on('click', 'button[type=submit]', function(e) {
+
+        e.preventDefault();
+        
+        alert("submittion test")
+        
+        $('.editSuccessMessage').hide();
+
+        var modal = $("#editProduct");
+
+        input.next().remove();
+
+        var form = $('#edit_form')[0];
+        var data = new FormData(form);
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            dataType: "json",
+            data: data,
+            contentType: false,
+            processData: false,
+            cache: false,
+            url: contextPath + '/ajax/edit-product',
+            success: function(res) {
+
+                if (res.validated) {
+                	errorMessage.toggle();
+                    modal.modal('toggle');
+
+                    input.val('');
+                    input.next().remove();
+                    $('#productTable').append(adminProductRow(res.data));
+
+                    showMessage("success", res.customMessage);
+
+                } else {
+                    $.each(res.errorMessages, function(key, value) {
+                        $('input[name=' + key + ']').after(errorFieldMessage({value:value}));
+                    });
+
+                    errorMessage.html(res.customMessage);
+                    errorMessage.fadeIn();
+
+                }
+            },
+            error: function(error) {
+                console.log(error);
+                alert("There's a problem editing a product.");
+            }
+
+        })
+    });
+
+})();

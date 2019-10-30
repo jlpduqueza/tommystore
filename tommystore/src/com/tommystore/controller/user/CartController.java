@@ -68,7 +68,7 @@ public class CartController {
     	
     	if(user == null) {
     		
-    		return "redirect:/login";
+    		return "redirect:/ajax/login";
         }
     	
     	if(cart.getCartItemMap().isEmpty()) {

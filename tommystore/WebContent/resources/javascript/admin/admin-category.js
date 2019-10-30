@@ -1,4 +1,4 @@
-$(function() {
+(function() {
 	
 	"use strict";
 	
@@ -55,10 +55,11 @@ $(function() {
             url: contextPath + '/ajax/category/delete-category?id=' + id,
             dataType: "json",
             success: function(res) {
-
+            	var $row = "#tr" + id;
                 console.log("getting here");
 
                 if (res.validated) {
+                	$($row).remove();
                     showMessage("success", res.customMessage);
                 } else {
                     showMessage("danger", res.customMessage);

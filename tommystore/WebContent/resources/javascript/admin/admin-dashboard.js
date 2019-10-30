@@ -31,9 +31,9 @@
         url: contextPath + '/ajax/inventory-item/low-stock',
         dataType: "json",
         success: function(res) {
+        	var inventoryItemTable = $('#inventoryItemTable');
+        	
             if (res.length == 0) {
-            	
-            	var inventoryItemTable = $('#inventoryItemTable');
             	
             	inventoryItemTable.hide();
                 $('.tableEmptyMessage2').show();

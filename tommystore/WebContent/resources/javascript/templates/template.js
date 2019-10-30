@@ -1,5 +1,5 @@
 var categoryTemplate = _.template(
-		'<tr id="categoryRow<%-id%>">'
+		'<tr id="tr<%-id%>">'
 	+	'<td><%-categoryId%></td>'
 	+	'<td id="nameField<%-id%>"><%-name%></td>'
 	+	'<td>'
@@ -159,7 +159,10 @@ var adminProductRow = _.template(
 	+	'<td class="align-middle"><%-name%></td>'
 	+	'<td class="align-middle"><%-price%></td>'
 	+	'<td class="align-middle"><%-category%></td>'
-	+	'<td class="align-middle">'
+	+	'<td class="align-middle edit-product-td">'
+	+		'<a class="nav-link btn btn-dark edit-product-link" style="color: white;" data-id="<%-id%>" data-toggle="modal" data-target="#editProduct">'	    
+	+			'Edit'    
+	+		'</a>'  	
 	+		'<a class="btn btn-dark" id="<%-id%>" href="edit-product-view?id=<%-id%>" role="button">Edit</a>'
 	+		'<a class="btn btn-dark delete-link" id="<%-id%>" href="delete-product?id=<%-id%>" role="button">Delete</a>'
 	+		'<a class="btn btn-dark" id="<%-id%>" href="product-orders-view?id=<%-id%>" role="button">Orders</a>'
@@ -230,6 +233,37 @@ var addProductInput = _.template(
 		
 );
 
+var editProductInput = _.template(
+
+	 '<div class="row">'
+	+   '<div class="col-md-4">'
+	+      '<div class="form-group">'
+	+          '<label>Upload product photo</label>'
+	+          '<input type="file" name="picture" value="<%-picturePath%>" />'
+	+      '</div>'
+	+   '</div>'
+	+   '<div class="col-md-4">'
+	+      '<div class="form-group">'
+	+          '<label for="role">Name</label>'                                                                               
+	+          '<input type="text" class="form-control" name="name" placeholder="name" required="required" value="<%-name%>"/>'
+	+      '</div>'
+	+   '</div>'
+	+   '<div class="col-md-4">'
+	+      '<div class="form-group">'
+	+          '<label for="role">Price</label>'                                                                                 
+	+          '<input type="text" class="form-control" name="price" placeholder="price" required="required" value="<%-price%>"/>'
+	+      '</div>'
+	+   '</div>'
+	+   '<div class="col-md-4">'
+	+      '<div class="form-group">'
+	+          '<label for="role">Category</label>'                          
+	+		   '<select class="form-control category-select" name="category.id" value="<%-categoryId%>">'
+	+		   '</select>'
+	+      '</div>'
+	+   '</div>'
+	+'</div>'
+		
+);
 var orderRow = _.template(
 		
 	  '<tr>'

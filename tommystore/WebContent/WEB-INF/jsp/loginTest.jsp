@@ -46,16 +46,16 @@
 		<div class="text-center"> <a href="sign-up">Create an Account</a></div>
 	</div>
 
-	<script   src="https://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
+    <script   src="https://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/lib/underscore.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/javascript/common.js"/>"></script>
     <script src="<c:url value="/resources/popper.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap.min.js"/>"></script>
 
     <!-- Icons -->
     <script src="<c:url value="/resources/feather.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/javascript/lib/underscore.js"/>"></script>
  	<script type="text/javascript" src="<c:url value="/javascript/login/loginForm.js"/>"></script>
- 	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
     <script>
       feather.replace()
     </script>

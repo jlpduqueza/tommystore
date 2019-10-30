@@ -29,7 +29,7 @@
 
 	<div class="login-form">
     	<form:form action="logging-in" method="post" modelAttribute="loginBean">
-			<h2>Loginff</h2>
+			<h2>Login</h2>
        		<c:choose>
 				<c:when test="${errorMessage!=null}">  
 					<div class="alert alert-danger" role="alert">
@@ -52,7 +52,7 @@
 	            <button type="submit" class="btn btn-primary btn-lg">Login</button>
 	        </div>
 	    </form:form>
-		<div class="text-center"> <a href="sign-up">Crea an Account</a></div>
+		<div class="text-center"> <a href="sign-up">Create an Account</a></div>
 	</div>
 
 

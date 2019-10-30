@@ -28,8 +28,9 @@
     $.get({
         url: contextPath + '/ajax/shippingAddress',
         success: function(res) {
+        	var shippingAddressTable = $('#shippingAddressTable');
+        	
             if (res.length == 0) {
-            	var shippingAddressTable = $('#shippingAddressTable');
             	
             	shippingAddressTable.hide();
                 $('.tableEmptyMessage2').show();

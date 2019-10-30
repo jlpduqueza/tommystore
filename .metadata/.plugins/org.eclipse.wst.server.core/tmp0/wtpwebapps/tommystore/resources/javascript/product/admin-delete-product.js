@@ -16,10 +16,10 @@
 
                 if (!res.validated) {
                     $('#errorMessage').html(res.customMessage);
-                    showMessage("success", res.customMessage);
+                    showMessage("danger", res.customMessage);
                 } else {
                     $($row).remove();
-                    showMessage("danger", res.customMessage);
+                    showMessage("sucess", res.customMessage);
                 }
             },
             error: function(error) {

@@ -125,12 +125,12 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script   src="https://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/lib/underscore.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/javascript/common.js"/>"></script>
  	<script type="text/javascript" src="<c:url value="/javascript/admin/admin-category.js"/>"></script>
  	<script type="text/javascript" src="<c:url value="/javascript/category/category-page.js"/>"></script>
  	<script type="text/javascript" src="<c:url value="/javascript/category/edit-category.js"/>"></script>
- 	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="<c:url value="/resources/popper.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap.min.js"/>"></script>
 

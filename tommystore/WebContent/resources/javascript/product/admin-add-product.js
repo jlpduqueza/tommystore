@@ -2,7 +2,7 @@
 
 	"use strict";
     var errorMessage = $("#errorMessage");
-	
+
     $(".add-product-li").on('click', '.add-product-link', function() {
     	
     	GlobalUtil.clearErrorField();
@@ -30,9 +30,10 @@
 
     errorMessage.fadeOut();
 
-    $('#editProduct').on('click', 'button[type=submit]', function(e) {
+    $('#addProduct').on('click', 'button[type=submit]', function(e) {
 
         e.preventDefault();
+        
         $('.addSuccessMessage').hide();
 
         var modal = $("#addProduct");

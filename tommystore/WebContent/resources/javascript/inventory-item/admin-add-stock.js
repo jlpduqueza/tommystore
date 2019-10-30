@@ -2,7 +2,7 @@
 
 	"use strict";
 
-    errorMessage = $("#errorMessage");
+    var errorMessage = $("#errorMessage");
 
     $('#inventoryItemTable').on('click', '.modal-add-stock', function(e) {
         var $id = $(this).attr("data-id");

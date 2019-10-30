@@ -98,13 +98,13 @@
           </main>
           
     <script   src="https://code.jquery.com/jquery-3.4.1.js"   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="   crossorigin="anonymous"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/lib/underscore.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/javascript/common.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap.min.js"/>"></script>
     <script src="<c:url value="/resources/popper.min.js"/>"></script>
     <script src="<c:url value="/resources/feather.min.js"/>"></script>	
-	<script type="text/javascript" src="<c:url value="/javascript/common.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/javascript/cart/add-to-cart-modal.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/javascript/lib/underscore.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/javascript/search/search-product.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/javascript/product/product-list.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/javascript/templates/template.js"/>"></script>
 </body></html>
