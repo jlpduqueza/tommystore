@@ -4,6 +4,8 @@
 
 	var errorMessage = $("#errorMessage");
 	var mySelect;
+
+    var modal = $("#editProduct");
 	
 	errorMessage.toggle();
 	input.next().remove();
@@ -28,7 +30,6 @@
             success: function(res) {
             	mySelect = res.categoryId;
 
-                alert(mySelect);
                 $("#edit-body").html(editProductInput(res));
                 $("#id").attr('value', res.id);
                 errorMessage.fadeOut();
@@ -53,7 +54,8 @@
                 });
                 
                 categorySelect.val(mySelect);
-                
+
+                modal.modal('toggle');
             },
             error: function(error) {
                 console.log(error);
@@ -62,6 +64,7 @@
 
 
         })
+        
     });
 
     errorMessage.fadeOut();
@@ -70,9 +73,9 @@
 
         e.preventDefault();
         
+        alert("editting");
+        
         $('.editSuccessMessage').hide();
-
-        var modal = $("#editProduct");
 
         input.next().remove();
 
@@ -95,15 +98,18 @@
 
                     input.val('');
                     input.next().remove();
-                    $('#productTable').append(adminProductRow(res.data));
+                    $('#tr'+res.data.id).replaceWith(adminProductRow(res.data));
 
                     showMessage("success", res.customMessage);
+                    alert(res.customMessage);
 
                 } else {
                     $.each(res.errorMessages, function(key, value) {
                         $('input[name=' + key + ']').after(errorFieldMessage({value:value}));
                     });
 
+                    alert(res.customMessage);
+                    
                     errorMessage.html(res.customMessage);
                     errorMessage.fadeIn();
 

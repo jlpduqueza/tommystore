@@ -186,5 +186,61 @@ public class ProductAjaxController {
         return response;
     }
     
+
+    @RequestMapping(value = "/edit-product", method = RequestMethod.POST)
+    @ResponseBody
+	public JsonResponse<ProductBeanJson> editProduct(@Valid ProductBean productBean, BindingResult result, Model model, HttpSession session) throws IOException {
+    	
+    	JsonResponse<ProductBeanJson> response = new JsonResponse<>();
+    	
+    	if(productService.isNameValid(productBean.getName(), productBean.getId())) {
+        	result.rejectValue("name", "error.productBean", messageController.getProductNameUsedMessage());
+        }
+        
+        if(!productService.isPriceValid(productBean.getPrice())) {
+        	result.rejectValue("price", "error.productBean", messageController.getInvalidPriceMessage());
+        }
+    	
+        if (result.hasErrors()) {
+        	model.addAttribute("categoryMap",categoryService.getCategoryMap());
+
+            Map<String, String> errors = new HashMap<>();
+
+            for(FieldError error: result.getFieldErrors()) {
+            	if(errors.containsKey(error.getField())) {
+                	errors.replace(error.getField(), errors.get(error.getField())+", "+error.getDefaultMessage());
+            	}
+            	else {
+                	errors.put(error.getField(), error.getDefaultMessage());
+            	}
+            }
+
+            response.setErrorMessages(errors);
+        	response.setValidated(false);
+        	
+            return response;
+        }	
+
+		Product product = productService.find(productBean.getId());
+		
+		if(!productBean.getPicture().isEmpty()) {
+
+	        product.setPicturePath(productBean.getPicture().getOriginalFilename());
+		}
+        
+		product.setCategory(categoryService.find(productBean.getCategory().getId()));
+		product.setName(productBean.getName());
+		product.setPrice(new BigDecimal(productBean.getPrice()));
+        
+        productService.save(product);
+        
+        response.setData(new ProductBeanJson(productService.save(product)));
+        response.setCustomMessage(messageController.getSuccessEditingProduct());
+		response.setValidated(true);
+        
+    	System.out.println("editting");
+		
+		return response;
+    }
 	
 }

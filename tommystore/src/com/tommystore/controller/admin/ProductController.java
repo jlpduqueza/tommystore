@@ -81,40 +81,6 @@ public class ProductController {
     	return "admin-dashboard-edit-product";
     }
     
-    @RequestMapping(value = "/edit-product", method = RequestMethod.POST)
-    public String editCategory(@Valid ProductBean productBean, BindingResult result, Model model, RedirectAttributes attributes) {
-
-        if(productService.isNameValid(productBean.getName(), productBean.getId())) {
-        	result.rejectValue("name", "error.productBean", messageController.getProductNameUsedMessage());
-        }
-        
-        if(!productService.isPriceValid(productBean.getPrice())) {
-        	result.rejectValue("price", "error.productBean", messageController.getInvalidPriceMessage());
-        }
-    	
-        if (result.hasErrors()) {
-        	model.addAttribute("categoryMap",categoryService.getCategoryMap());
-        	
-    		return "admin-dashboard-edit-product";
-        }	
-
-		Product product = productService.find(productBean.getId());
-		
-		if(!productBean.getPicture().isEmpty()) {
-
-	        product.setPicturePath(productBean.getPicture().getOriginalFilename());
-		}
-        
-		product.setCategory(categoryService.find(productBean.getCategory().getId()));
-		product.setName(productBean.getName());
-		product.setPrice(new BigDecimal(productBean.getPrice()));
-        
-        productService.save(product);
-        
-        attributes.addFlashAttribute("successMessage", messageController.getSuccessEditingProduct());
-        
-		return "redirect:product-list-view";
-    }
     
     
 }
